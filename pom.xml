@@ -67,6 +67,13 @@
             <scope>system</scope>
             <systemPath>${steam.path}/workshop/content/646570/1609158507/StSLib.jar</systemPath>
         </dependency>
+        <dependency>
+            <groupId>com.evacipated.cardcrawl.mod</groupId>
+            <artifactId>SlayTheStreamer</artifactId>
+            <version>1.5</version>
+            <scope>system</scope>
+            <systemPath>${steam.path}/workshop/content/646570/1610759491/Slay the Streamer.jar</systemPath>
+        </dependency>
     </dependencies>
 
 

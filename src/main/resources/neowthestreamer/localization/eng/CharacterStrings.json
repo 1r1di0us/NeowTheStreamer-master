@@ -1,13 +1,89 @@
 {
-  "${modID}:CharacterID": {
+  "${modID}:NeowTheStreamerReward": {
     "NAMES": [
-      "The Name (Displayed in character select)",
-      "the Name (but 'the' is lowercase, this is displayed at the top left during gameplay)"
+      "Literally Unplayable"
+    ],
+    "UNIQUE_REWARDS": [
+      "[ #gObtain ",
+      "[ #gObtain #g3 #gcopies #gof ",
+      " #gObtain #gNeow's #gLament ]",
+      " #gGain #g",
+      " #gGold ]",
+      " #gGain #ga #grandom #gvanilla #gRelic ]",
+      " #gMax #gHP #g+",
+      " #gGain #g",
+      " #gGold #gand ",
+      " #g1 #grandom #gPotion ]",
+      " #ga #grandom #grare #gCard ]",
+      " #gTransform #g1 #gCard ]",
+      " #gRemove #g1 #gCard ]",
+      " #gUpgrade #g1 #gCard ]",
+      " #gUpgrade #g2 #grandom #gCards ]",
+      " #gUpgrade #gyour #gDeck ]",
+      " #gUpgrade #gyour #gstarter #gRelic ]",
+      "[ Obtain Mask of Midas ]",
+      " #gObtain #gBusted #gCrown ]",
+      " #gObtain #gBite, #gApparition, #gJ.A.X., #gand #gRitual #gDagger ]",
+      " #gObtain #gBody #gOf #gCleric ]",
+      "[ #gObtain #gYoutube's #gBlessing #rTransforms #rinto #rYoutubes #rRevenge #rin #rAct #r4 ]",
+      " #gObtain #g3 #gCard #gVouchers ]",
+      " #gGain #g5 #gRelic #gRewards ]",
+      "[ #gMax #gHP #g+",
+      "[ #gEnemies #gin #gyour #gnext #gthree #gcombats #ghave #g1 #gHP ]",
+      "[ #rLose #ryour #rstarting #rRelic #gObtain #ga #grandom #gboss #gRelic ]"
     ],
     "TEXT": [
-      "Line #1 of character select description. NL Line 2 of character select description.",
-      " NL Text displayed when smacking the heart. The next one is used for the Vampires event. Usually you just change the last bit.",
-      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~basic~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+      "[ #rObtain #rCultist #rHeadpiece",
+      "[ #rObtain ",
+      "[ #rObtain #rthe #rDeck #rof #rTerrible #rThings, For every time you use it before entering act 2,",
+      "[ For every 2 HP below 10 you are at before entering act 2,",
+      "[ For every 4 floors climbed #rpast #rthe #rfirst #r6 without taking any unblocked damage, upon entering act 2,",
+      "[ For every 3 potions discarded before entering act 2,",
+      "[ For every key obtained #rminus #r1 before entering act 2,",
+      "[ For every 100 gold you hold #ron #rtop #rof #ryour #rinitial #r99 upon entering act 2,",
+      "[ For every 6 cards #rmore #rthan #ryour #rinitial #r11 in your deck upon entering act 2,",
+      ", for every 6 floors climbed without removing it, upon entering act 2,",
+      "[ #rObtain #rMark #rOf #rNeoom",
+      "[ #rObtain #rNeows #rPrank",
+      "[ #rObtain #rPear #rWheel",
+      "[ #rObtain #rChat's #rRevenge",
+      "[ #rSet #rMax #rHP #rto #r",
+      "[ #rObtain #rWrath #rof #rthe #rIronclad ]",
+      "[ #rObtain #rWrath #rof #rthe #rSilent ]",
+      "[ #rObtain #rWrath #rof #rthe #rDefect ]",
+      "[ #rObtain #rWrath #rof #rthe #rWatcher ]"
+    ]
+  },
+  "${modID}:NeowTheStreamerEvent": {
+    "NAMES": [
+      "Neow"
+    ],
+    "TEXT": [
+      "~Greetings...~ ~Streamer...~ NL ~I..~ ~am~ ~Neow...~",
+      "~Hello...~ NL ~Again..~ NL ~Chat..~",
+      "~Greetings...~ ~youtube...~",
+      "~Another~ NL ~monday...?~",
+      "~Git~ ~Good...~ NL ~to~ ~receive~ ~more..~ ~blessings...~",
+      "~Another~ ~copy...~ NL ~of~ ~StS~ ~2...~",
+      "~I~ ~brought~ ~you~ ~snacks...~",
+      "~Choose...~",
+      "~Granted...~",
+      "~Risk...~ NL ~..reward....~",
+      "~Time~ ~for~ NL ~ANOTHER~ ~ROUND...~",
+      "Rewards",
+      "~Let's~ ~keep~ ~going...~",
+      "~It~ ~only~ ~gets~ ~harder...~",
+      "~Impressive...~ ~more...~",
+      "Cursed!",
+      "Scatterbrain!",
+      "Transformation!"
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Talk]",
+      "[Skip]",
+      "[Leave]",
+      "Choose 10 cards to add to your deck."
     ]
   }
 }

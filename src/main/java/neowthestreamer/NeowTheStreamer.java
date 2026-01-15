@@ -49,6 +49,9 @@ public class NeowTheStreamer implements
         return modID + ":" + id;
     }
 
+    public static boolean modEnabled = true;
+    public static boolean debugNeow = true;
+
     //This will be called by ModTheSpire because of the @SpireInitializer annotation at the top of the class.
     public static void initialize() {
         new NeowTheStreamer();
