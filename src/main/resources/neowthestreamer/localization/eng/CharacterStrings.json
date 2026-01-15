@@ -35,26 +35,26 @@
     "TEXT": [
       "[ #rObtain #rCultist #rHeadpiece",
       "[ #rObtain ",
-      "[ #rObtain #rthe #rDeck #rof #rTerrible #rThings, For every time you use it before entering act 2,",
-      "[ For every 2 HP below 10 you are at before entering act 2,",
-      "[ For every 4 floors climbed #rpast #rthe #rfirst #r6 without taking any unblocked damage, upon entering act 2,",
-      "[ For every 3 potions discarded before entering act 2,",
-      "[ For every key obtained #rminus #r1 before entering act 2,",
-      "[ For every 100 gold you hold #ron #rtop #rof #ryour #rinitial #r99 upon entering act 2,",
-      "[ For every 6 cards #rmore #rthan #ryour #rinitial #r11 in your deck upon entering act 2,",
-      ", for every 6 floors climbed without removing it, upon entering act 2,",
+      "[ #rObtain #rthe #rDeck #rof #rTerrible #rThings #rChallenge #gREWARD:",
+      "[ #rObtain #rthe #rLow #rHP #rChallenge #gREWARD:",
+      "[ #rObtain #rthe #rHitless #rChallenge #gREWARD:",
+      "[ #rObtain #rthe #rPotion #rTrashing #rChallenge #gREWARD:",
+      "[ #rObtain #rthe #rKey #rTrashing #rChallenge #gREWARD:",
+      "[ #rObtain #rthe #rGold #rHoarding #rChallenge #gREWARD:",
+      "[ #rObtain #rthe #rDeck #rBuilding #rChallenge #gREWARD:",
+      " #rand #rthe #rCurse #rCarrying #rChallenge #gREWARD:",
       "[ #rObtain #rMark #rOf #rNeoom",
       "[ #rObtain #rNeows #rPrank",
       "[ #rObtain #rPear #rWheel",
       "[ #rObtain #rChat's #rRevenge",
       "[ #rSet #rMax #rHP #rto #r",
-      "[ #rObtain #rWrath #rof #rthe #rIronclad ]",
-      "[ #rObtain #rWrath #rof #rthe #rSilent ]",
-      "[ #rObtain #rWrath #rof #rthe #rDefect ]",
-      "[ #rObtain #rWrath #rof #rthe #rWatcher ]"
+      "[ #rObtain #rWrath #rof #rthe #rIronclad #gREWARD: #gObtain #gDemon #gForm ]",
+      "[ #rObtain #rWrath #rof #rthe #rSilent #gREWARD: #gObtain #gWraith #gForm ]",
+      "[ #rObtain #rWrath #rof #rthe #rDefect #gREWARD: #gObtain #gEcho #gForm ]",
+      "[ #rObtain #rWrath #rof #rthe #rWatcher #gREWARD: #gObtain #gDeva #gForm ]"
     ]
   },
-  "${modID}:NeowTheStreamerEvent": {
+  "${modID}:NeowEventPatch": {
     "NAMES": [
       "Neow"
     ],

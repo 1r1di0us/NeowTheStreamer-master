@@ -49,9 +49,6 @@ public class NeowTheStreamer implements
         return modID + ":" + id;
     }
 
-    public static boolean modEnabled = true;
-    public static boolean debugNeow = true;
-
     //This will be called by ModTheSpire because of the @SpireInitializer annotation at the top of the class.
     public static void initialize() {
         new NeowTheStreamer();
@@ -72,6 +69,8 @@ public class NeowTheStreamer implements
         //If you want to set up a config panel, that will be done here.
         //You can find information about this on the BaseMod wiki page "Mod Config and Panel".
         BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
+
+        Settings.isTestingNeow = true;
     }
 
     /*----------Localization----------*/
