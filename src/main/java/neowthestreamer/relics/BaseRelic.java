@@ -2,6 +2,15 @@ package neowthestreamer.relics;
 
 import basemod.abstracts.CustomRelic;
 import basemod.helpers.RelicType;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.helpers.SaveHelper;
+import com.megacrit.cardcrawl.neow.NeowEvent;
+import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.util.GeneralUtils;
 import neowthestreamer.util.TextureLoader;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,12 +18,21 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.localization.RelicStrings;
 
-import static neowthestreamer.NeowTheStreamer.relicPath;
+import static neowthestreamer.NeowTheStreamer.*;
 
 public abstract class BaseRelic extends CustomRelic {
     public AbstractCard.CardColor pool = null;
     public RelicType relicType = RelicType.SHARED;
     protected String imageName;
+
+    private static final String ID = makeID("BaseRelic");
+
+    private static final RelicStrings relicStrings = CardCrawlGame.languagePack.getRelicStrings(ID);
+
+    public static final String[] MSG = relicStrings.DESCRIPTIONS;
+
+    public boolean activated = false;
+    public NeowTheStreamerReward.NeowTheStreamerRewardType reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
 
     //for character specific relics
     public BaseRelic(String id, String imageName, AbstractCard.CardColor pool, RelicTier tier, LandingSound sfx) {
@@ -101,5 +119,82 @@ public abstract class BaseRelic extends CustomRelic {
 
     private static boolean notPng(String name) {
         return !name.endsWith(".png");
+    }
+
+    @Override
+    public void usedUp() {
+        this.grayscale = true;
+        this.usedUp = true;
+        this.description = MSG[0];
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
+    }
+
+    public int getRewardIndex(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
+        switch (reward) {
+            case RANDOM_COMMON_RELIC:
+                return 1;
+            case MAX_HP:
+                return 2;
+            case GOLD:
+                return 3;
+            case GOLD_AND_POTION:
+                return 4;
+            case TRANSFORM_CARD:
+                return 5;
+            case UPGRADE_RANDOM:
+                return 6;
+            case REMOVE_CARD:
+                return 7;
+            case DUPLICATE_CARD:
+                return 8;
+            default:
+                logger.info("Incorrect Challenge Reward");
+                return 0;
+        }
+    }
+
+    public void update() {
+        super.update();
+        if (this.activated) {
+            if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+                switch (this.reward) {
+                    case TRANSFORM_CARD:
+                        for (int i = 0; i < counter; i++) {
+                            AbstractDungeon.transformCard(AbstractDungeon.gridSelectScreen.selectedCards
+                                    .get(i), false, NeowEvent.rng);
+                            AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards
+                                    .get(i));
+                            AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(
+                                    AbstractDungeon.getTransformedCard(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                        }
+                        break;
+                    case REMOVE_CARD:
+                        for (int i = 0; i < counter; i++) {
+                            CardCrawlGame.sound.play("CARD_EXHAUST");
+                            AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards
+                                    .get(i), (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
+                            AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards
+                                    .get(i));
+                        }
+                        break;
+                    case DUPLICATE_CARD:
+                        for (int i = 0; i < counter; i++) {
+                            AbstractCard c = (AbstractDungeon.gridSelectScreen.selectedCards.get(i)).makeStatEquivalentCopy();
+                            AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(
+                                    c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                        }
+                        break;
+                    default:
+                        logger.info("[ERROR] Missing Challenge Reward Type: " + this.reward.name());
+                        break;
+                }
+                AbstractDungeon.gridSelectScreen.selectedCards.clear();
+                AbstractDungeon.overlayMenu.cancelButton.hide();
+                SaveHelper.saveIfAppropriate(SaveFile.SaveType.ENTER_ROOM);
+                this.activated = false;
+            }
+        }
     }
 }

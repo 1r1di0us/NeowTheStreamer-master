@@ -1,10 +1,13 @@
 package neowthestreamer;
 
+import basemod.AutoAdd;
 import basemod.BaseMod;
-import basemod.interfaces.AddAudioSubscriber;
-import basemod.interfaces.EditKeywordsSubscriber;
-import basemod.interfaces.EditStringsSubscriber;
-import basemod.interfaces.PostInitializeSubscriber;
+import basemod.helpers.RelicType;
+import basemod.interfaces.*;
+import com.badlogic.gdx.utils.compression.lzma.Base;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import neowthestreamer.cards.BaseCard;
+import neowthestreamer.relics.BaseRelic;
 import neowthestreamer.util.GeneralUtils;
 import neowthestreamer.util.KeywordInfo;
 import neowthestreamer.util.Sounds;
@@ -33,6 +36,8 @@ import java.util.*;
 
 @SpireInitializer
 public class NeowTheStreamer implements
+        EditCardsSubscriber,
+        EditRelicsSubscriber,
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         AddAudioSubscriber,
@@ -70,6 +75,7 @@ public class NeowTheStreamer implements
         //You can find information about this on the BaseMod wiki page "Mod Config and Panel".
         BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
 
+        //guarantee big whale bonus
         Settings.isTestingNeow = true;
     }
 
@@ -215,14 +221,40 @@ public class NeowTheStreamer implements
     public static String imagePath(String file) {
         return resourcesFolder + "/images/" + file;
     }
-    public static String characterPath(String file) {
-        return resourcesFolder + "/images/character/" + file;
-    }
     public static String powerPath(String file) {
         return resourcesFolder + "/images/powers/" + file;
     }
     public static String relicPath(String file) {
         return resourcesFolder + "/images/relics/" + file;
+    }
+
+    @Override
+    public void receiveEditCards() {
+        //BaseMod.addDynamicVariable(new SecondMagicNumber());
+        //BaseMod.addDynamicVariable(new ThirdMagicNumber());
+        //BaseMod.addDynamicVariable(new SecondDamage());
+        //BaseMod.addDynamicVariable(new SecondBlock());
+        new AutoAdd(modID)
+                .packageFilter(BaseCard.class)
+                .setDefaultSeen(true)
+                .cards();
+        //.notPackageFilter("neowthestreamer.cards.foldersyoudon'tlike") just before .cards
+    }
+
+    @Override
+    public void receiveEditRelics() {
+        new AutoAdd(modID)
+                .packageFilter(BaseRelic.class)
+                .any(BaseRelic.class, (info, relic) -> {
+                    if (relic.pool == null) {
+                        BaseMod.addRelic(relic, RelicType.SHARED);
+                    } else {
+                        BaseMod.addRelicToCustomPool(relic, relic.pool);
+                    }
+                    if (!info.seen) {
+                        UnlockTracker.markRelicAsSeen(relic.relicId);
+                    }
+                });
     }
 
     /**

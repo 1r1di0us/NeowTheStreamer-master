@@ -1,9 +1,71 @@
 {
-  "${modID}:RelicID": {
-    "NAME": "Good Relic",
-    "FLAVOR": "Flavor text displayed in detailed relic view.",
+  "${modID}:BaseRelic": {
     "DESCRIPTIONS": [
-      "Gain [E] at the start of your turn. [E] is an energy icon."
+      "This challenge has been completed!",
+      " REWARD: Obtain a random common relic.",
+      " REWARD: Gain 7 Max HP.",
+      " REWARD: Gain 100 Gold.",
+      " REWARD: Gain 75 Gold and a potion.",
+      " REWARD: Transform 1 card.",
+      " REWARD: Upgrade 1 random card.",
+      " REWARD: Remove 1 card and lose 2 Max HP.",
+      " REWARD: Duplicate 1 card and lose 4 Max HP."
+    ]
+  },
+  "${modID}:LowHPChallenge": {
+    "NAME": "Low HP Challenge",
+    "FLAVOR": "Challenge Accepted!",
+    "DESCRIPTIONS": [
+      "For every 2 combats where you go below ",
+      " HP, add a Reward (max 5). Ends upon entering act 2.",
+      " Combat counter: "
+    ]
+  },
+  "${modID}:MarkOfTheNeoom": {
+    "NAME": "Mark of the Neoom",
+    "FLAVOR": "Why didn't fairy in a bottle proc?",
+    "DESCRIPTIONS": [
+      "Gives Mark of the Bloom. Removes it at the start of act 2."
+    ]
+  },
+  "${modID}:WrathOfTheIronclad": {
+    "NAME": "Wrath of the Ironclad",
+    "FLAVOR": "This is what selling your soul to a demon feels like, I guess",
+    "DESCRIPTIONS": [
+      "For the next ",
+      " combats, whenever you play a card, take ",
+      " combat, whenever you play a card, take ",
+      " damage. REWARD: Obtain Demon Form."
+    ]
+  },
+  "${modID}:WrathOfTheSilent": {
+    "NAME": "Wrath of the Silent",
+    "FLAVOR": "Sorry man, the monsters asked for it first.",
+    "DESCRIPTIONS": [
+      "At the start of the next ",
+      " combat, ALL enemies gain ",
+      " combats, ALL enemies gain ",
+      " Intangible. REWARD: Obtain Wraith Form."
+    ]
+  },
+  "${modID}:WrathOfTheDefect": {
+    "NAME": "Wrath of the Defect",
+    "FLAVOR": "It takes a lot of energy to be an automaton.",
+    "DESCRIPTIONS": [
+      "For the next ",
+      " combats, Lose ",
+      " combat, Lose ",
+      " Energy at the start of your turn. REWARD: Obtain Echo Form."
+    ]
+  },
+  "${modID}:WrathOfTheWatcher": {
+    "NAME": "Wrath of the Watcher",
+    "FLAVOR": "Streamer, I remember your blasphemies.",
+    "DESCRIPTIONS": [
+      "For the next ",
+      " combats, Die on turn ",
+      " combat, Die on turn ",
+      ". REWARD: Obtain Deva Form."
     ]
   }
 }

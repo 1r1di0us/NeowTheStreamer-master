@@ -1,8 +1,10 @@
 {
-  "${modID}:PowerID": {
-    "NAME": "Ultimate Power",
+  "${modID}:WrathOfTheWatcherPower": {
+    "NAME": "Impending Doom",
     "DESCRIPTIONS": [
-      "You are Very Cool and Strong."
+      "In ",
+      " turns, Die.",
+      " turn, Die."
     ]
   }
 }
