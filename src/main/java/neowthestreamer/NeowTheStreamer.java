@@ -5,8 +5,15 @@ import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
 import com.badlogic.gdx.utils.compression.lzma.Base;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import neowthestreamer.cards.BaseCard;
+import neowthestreamer.cards.YoutubesBlessing;
+import neowthestreamer.cards.YoutubesRevenge;
+import neowthestreamer.interfaces.ActTwoChallengeInterface;
 import neowthestreamer.relics.BaseRelic;
 import neowthestreamer.util.GeneralUtils;
 import neowthestreamer.util.KeywordInfo;
@@ -41,7 +48,8 @@ public class NeowTheStreamer implements
         EditStringsSubscriber,
         EditKeywordsSubscriber,
         AddAudioSubscriber,
-        PostInitializeSubscriber {
+        PostInitializeSubscriber,
+        StartActSubscriber {
     public static ModInfo info;
     public static String modID; //Edit your pom.xml to change this
     static { loadModInfo(); }
@@ -303,6 +311,23 @@ public class NeowTheStreamer implements
         }
         else {
             throw new RuntimeException("Failed to determine mod info/ID based on initializer.");
+        }
+    }
+
+    @Override
+    public void receiveStartAct() {
+        if (AbstractDungeon.actNum == 4 && AbstractDungeon.player.masterDeck.findCardById(YoutubesBlessing.ID) != null) {
+            AbstractCard YtB = AbstractDungeon.player.masterDeck.findCardById(YoutubesBlessing.ID);
+            AbstractDungeon.player.masterDeck.removeCard(YtB);
+            AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(
+                    new YoutubesRevenge(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+        }
+        if (AbstractDungeon.actNum == 2) {
+            for (AbstractRelic r : AbstractDungeon.player.relics) {
+                if (r instanceof ActTwoChallengeInterface) {
+                    ((ActTwoChallengeInterface) r).onEnterActTwo();
+                }
+            }
         }
     }
 }

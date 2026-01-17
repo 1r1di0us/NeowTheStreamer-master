@@ -1,12 +1,10 @@
 {
-  "${modID}:ExampleCard": {
-    "NAME": "Name",
-    "DESCRIPTION": "Description. NL Second line.",
-    "UPGRADE_DESCRIPTION": "This will automatically be used if the card is upgraded. Remove it if unneeded.",
-    "EXTENDED_DESCRIPTION": [
-      "You can put more text in here.",
-      "If you need to use it for stuff.",
-      "Blizzard is a good example for this."
-    ]
+  "${modID}:YoutubesBlessing": {
+    "NAME": "Youtube's Blessing",
+    "DESCRIPTION": "Unremovable. NL Draw !M! cards. NL Transform's into Youtube's Revenge in act 4."
+  },
+  "${modID}:YoutubesRevenge": {
+    "NAME": "Youtube's Revenge",
+    "DESCRIPTION": "Innate. Unremovable. NL Unplayable. Ethereal. NL When drawn, ALL enemies gain !M! Strength."
   }
 }

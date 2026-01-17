@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import neowthestreamer.cards.YoutubesBlessing;
 import neowthestreamer.relics.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -67,7 +68,7 @@ public class NeowTheStreamerReward extends NeowReward {
     }
 
     public enum NeowTheStreamerChallengeType {
-        NONE, ONE_CURSE, CULTIST_HEADPIECE, DECK_OF_TERRIBLE_THINGS, LOW_HP_CHALLENGE, HITLESS_CHALLENGE, POTION_TRASHING_CHALLENGE, KEY_TRASHING_CHALLENGE, GOLD_HOARDING_CHALLENGE, DECK_BUILDING_CHALLENGE, CURSE_CARRYING_CHALLENGE, MARK_OF_NEOOM, NEOWS_PRANK, PEAR_WHEEL, CHATS_REVENGE, MAX_HP_LOSS, TWO_CURSES, THREE_CURSES, WRATH_OF_IRONCLAD, WRATH_OF_SILENT, WRATH_OF_DEFECT, WRATH_OF_WATCHER
+        NONE, ONE_CURSE, CULTIST_HEADPIECE, DECK_OF_TERRIBLE_THINGS, LOW_HP_CHALLENGE, HITLESS_CHALLENGE, POTION_TRASHING_CHALLENGE, KEY_SMASHING_CHALLENGE, GOLD_HOARDING_CHALLENGE, DECK_BUILDING_CHALLENGE, CURSE_CARRYING_CHALLENGE, MARK_OF_NEOOM, NEOWS_PRANK, PEAR_WHEEL, CHATS_REVENGE, MAX_HP_LOSS, TWO_CURSES, THREE_CURSES, WRATH_OF_IRONCLAD, WRATH_OF_SILENT, WRATH_OF_DEFECT, WRATH_OF_WATCHER
     }
 
     public static class NeowTheStreamerOptionDef {
@@ -153,7 +154,7 @@ public class NeowTheStreamerReward extends NeowReward {
                     case 5:
                         cardReward = AbstractDungeon.getColorlessCardFromPool(AbstractCard.CardRarity.UNCOMMON);
                         option.rewardType = NeowTheStreamerRewardType.THREE_COLORLESS_CARDS;
-                        option.rewardDesc = REWARD_TEXT[0] + cardReward.name + " ]";
+                        option.rewardDesc = REWARD_TEXT[1] + cardReward.name + " ]";
                         break;
                     case 6:
                         option.challengeType = NeowTheStreamerChallengeType.CULTIST_HEADPIECE;
@@ -195,7 +196,7 @@ public class NeowTheStreamerReward extends NeowReward {
                         option.challengeDesc = CHALLENGE_TEXT[5];
                         break;
                     case 4:
-                        option.challengeType = NeowTheStreamerChallengeType.KEY_TRASHING_CHALLENGE;
+                        option.challengeType = NeowTheStreamerChallengeType.KEY_SMASHING_CHALLENGE;
                         option.challengeDesc = CHALLENGE_TEXT[6];
                         break;
                     case 5:
@@ -460,12 +461,21 @@ public class NeowTheStreamerReward extends NeowReward {
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(2).makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 break;
             case DECK_OF_TERRIBLE_THINGS:
+                break;
             case LOW_HP_CHALLENGE:
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new LowHPChallenge(this.reward));
+                break;
             case HITLESS_CHALLENGE:
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new HitlessChallenge(this.reward));
+                break;
             case POTION_TRASHING_CHALLENGE:
-            case KEY_TRASHING_CHALLENGE:
+            case KEY_SMASHING_CHALLENGE:
             case GOLD_HOARDING_CHALLENGE:
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new GoldHoardingChallenge(this.reward));
+                break;
             case DECK_BUILDING_CHALLENGE:
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new DeckBuildingChallenge(this.reward));
+                break;
             case CURSE_CARRYING_CHALLENGE:
                 break;
             case MARK_OF_NEOOM:
@@ -560,7 +570,10 @@ public class NeowTheStreamerReward extends NeowReward {
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(new RitualDagger(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 break;
             case BODY_OF_CLERIC:
+                break;
             case YOUTUBES_BLESSING:
+                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(new YoutubesBlessing(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                break;
             case CARD_VOUCHERS:
             case RELIC_REWARDS:
                 break;

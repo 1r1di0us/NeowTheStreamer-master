@@ -16,9 +16,39 @@
     "NAME": "Low HP Challenge",
     "FLAVOR": "Challenge Accepted!",
     "DESCRIPTIONS": [
-      "For every 2 combats where you go below ",
+      "For every ",
+      " combats where you go below ",
       " HP, add a Reward (max 5). Ends upon entering act 2.",
       " Combat counter: "
+    ]
+  },
+  "${modID}:HitlessChallenge": {
+    "NAME": "Hitless Challenge",
+    "FLAVOR": "Challenge Accepted!",
+    "DESCRIPTIONS": [
+      "For every ",
+      " floors climbed past the first ",
+      " without taking unblocked damage, add a Reward (max 5). Ends upon entering act 2.",
+      " Floor counter: ",
+      " Failed at: "
+    ]
+  },
+  "${modID}:GoldHoardingChallenge": {
+    "NAME": "Gold Hoarding Challenge",
+    "FLAVOR": "Challenge Accepted!",
+    "DESCRIPTIONS": [
+      "For every ",
+      " gold more than your initial ",
+      " that you hold, add a Reward (max 5). Spending gold updates rewards. Ends upon entering act 2."
+    ]
+  },
+  "${modID}:DeckBuildingChallenge": {
+    "NAME": "Deck Building Challenge",
+    "FLAVOR": "Challenge Accepted!",
+    "DESCRIPTIONS": [
+      "For every ",
+      " card more than your initial ",
+      " in your deck, add a Reward (max 5). Removing cards updates rewards. Ends upon entering act 2."
     ]
   },
   "${modID}:MarkOfTheNeoom": {
