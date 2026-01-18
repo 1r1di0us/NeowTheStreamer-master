@@ -291,18 +291,12 @@ public class NeowTheStreamerReward extends NeowReward {
                 }
                 break;
             case 2:
-                int gigaOptionIndex = NeowEvent.rng.random(2, 4);
+                int gigaOptionIndex = NeowEvent.rng.random(0, 4);
                 if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD && AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.THE_SILENT && AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.DEFECT && AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.WATCHER) {
-                    gigaOptionIndex = NeowEvent.rng.random(2, 4);
+                    gigaOptionIndex = NeowEvent.rng.random(0, 5);
                 } // no upgrading the starter relic on modded characters
                 switch (gigaOptionIndex) {
-                    /*case 0:
-                        option.challengeType = NeowTheStreamerChallengeType.NEOWS_PRANK;
-                        option.challengeDesc = CHALLENGE_TEXT[11];
-                        option.rewardType = NeowTheStreamerRewardType.UPGRADE_RELIC;
-                        option.rewardDesc = REWARD_TEXT[13];
-                        break;*/
-                    case 2:
+                    case 0:
                         this.relicReward = new MarkOfTheNeoom();
                         option.challengeType = NeowTheStreamerChallengeType.MARK_OF_NEOOM;
                         option.challengeDesc = CHALLENGE_TEXT[10];
@@ -334,7 +328,7 @@ public class NeowTheStreamerReward extends NeowReward {
                         option.rewardType = NeowTheStreamerRewardType.BODY_OF_CLERIC;
                         option.rewardDesc = REWARD_TEXT[17];
                         break;*/
-                    case 3:
+                    case 1:
                         this.cardReward = new YoutubesBlessing();
                         option.challengeType = NeowTheStreamerChallengeType.NONE; //youtubes revenge
                         option.challengeDesc = "";
@@ -358,110 +352,63 @@ public class NeowTheStreamerReward extends NeowReward {
                         option.rewardType = NeowTheStreamerRewardType.RELIC_REWARDS;
                         option.rewardDesc = REWARD_TEXT[20];
                         break;*/
-                    case 4:
-                        int wrathIndex;
-                        switch (AbstractDungeon.player.chosenClass) {
-                            case IRONCLAD:
-                                wrathIndex = NeowEvent.rng.random(0, 2);
-                                if (wrathIndex == 0) {
-                                    this.relicReward = new WrathOfTheSilent();
-                                    this.cardReward = new WraithForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_SILENT;
-                                    option.challengeDesc = CHALLENGE_TEXT[16];
-                                } else if (wrathIndex == 1) {
-                                    this.relicReward = new WrathOfTheDefect();
-                                    this.cardReward = new EchoForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_DEFECT;
-                                    option.challengeDesc = CHALLENGE_TEXT[17];
-                                } else if (wrathIndex == 2) {
-                                    this.relicReward = new WrathOfTheWatcher();
-                                    this.cardReward = new DevaForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_WATCHER;
-                                    option.challengeDesc = CHALLENGE_TEXT[18];
-                                }
-                                break;
-                            case THE_SILENT:
-                                wrathIndex = NeowEvent.rng.random(0, 2);
-                                if (wrathIndex == 0) {
-                                    this.relicReward = new WrathOfTheIronclad();
-                                    this.cardReward = new DemonForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_IRONCLAD;
-                                    option.challengeDesc = CHALLENGE_TEXT[15];
-                                } else if (wrathIndex == 1) {
-                                    this.relicReward = new WrathOfTheDefect();
-                                    this.cardReward = new EchoForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_DEFECT;
-                                    option.challengeDesc = CHALLENGE_TEXT[17];
-                                } else if (wrathIndex == 2) {
-                                    this.relicReward = new WrathOfTheWatcher();
-                                    this.cardReward = new DevaForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_WATCHER;
-                                    option.challengeDesc = CHALLENGE_TEXT[18];
-                                }
-                                break;
-                            case DEFECT:
-                                wrathIndex = NeowEvent.rng.random(0, 2);
-                                if (wrathIndex == 0) {
-                                    this.relicReward = new WrathOfTheIronclad();
-                                    this.cardReward = new DemonForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_IRONCLAD;
-                                    option.challengeDesc = CHALLENGE_TEXT[15];
-                                } else if (wrathIndex == 1) {
-                                    this.relicReward = new WrathOfTheSilent();
-                                    this.cardReward = new WraithForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_SILENT;
-                                    option.challengeDesc = CHALLENGE_TEXT[16];
-                                } else if (wrathIndex == 2) {
-                                    this.relicReward = new WrathOfTheWatcher();
-                                    this.cardReward = new DevaForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_WATCHER;
-                                    option.challengeDesc = CHALLENGE_TEXT[18];
-                                }
-                                break;
-                            case WATCHER:
-                                wrathIndex = NeowEvent.rng.random(0, 2);
-                                if (wrathIndex == 0) {
-                                    this.relicReward = new WrathOfTheIronclad();
-                                    this.cardReward = new DemonForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_IRONCLAD;
-                                    option.challengeDesc = CHALLENGE_TEXT[15];
-                                } else if (wrathIndex == 1) {
-                                    this.relicReward = new WrathOfTheSilent();
-                                    this.cardReward = new WraithForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_SILENT;
-                                    option.challengeDesc = CHALLENGE_TEXT[16];
-                                } else if (wrathIndex == 2) {
-                                    this.relicReward = new WrathOfTheDefect();
-                                    this.cardReward = new EchoForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_DEFECT;
-                                    option.challengeDesc = CHALLENGE_TEXT[17];
-                                }
-                                break;
-                            default:
-                                wrathIndex = NeowEvent.rng.random(0, 3);
-                                if (wrathIndex == 0) {
-                                    this.relicReward = new WrathOfTheIronclad();
-                                    this.cardReward = new DemonForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_IRONCLAD;
-                                    option.challengeDesc = CHALLENGE_TEXT[15];
-                                } else if (wrathIndex == 1) {
-                                    this.relicReward = new WrathOfTheSilent();
-                                    this.cardReward = new WraithForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_SILENT;
-                                    option.challengeDesc = CHALLENGE_TEXT[16];
-                                } else if (wrathIndex == 2) {
-                                    this.relicReward = new WrathOfTheDefect();
-                                    this.cardReward = new EchoForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_DEFECT;
-                                    option.challengeDesc = CHALLENGE_TEXT[17];
-                                } else if (wrathIndex == 3) {
-                                    this.relicReward = new WrathOfTheWatcher();
-                                    this.cardReward = new DevaForm();
-                                    option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_WATCHER;
-                                    option.challengeDesc = CHALLENGE_TEXT[18];
-                                }
-                                break;
+                    case 2:
+                        if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD) {
+                            this.relicReward = new WrathOfTheIronclad();
+                            this.cardReward = new DemonForm();
+                            option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_IRONCLAD;
+                            option.challengeDesc = CHALLENGE_TEXT[15];
+                        } else {
+                            this.relicReward = new WrathOfTheSilent();
+                            this.cardReward = new WraithForm();
+                            option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_SILENT;
+                            option.challengeDesc = CHALLENGE_TEXT[16];
                         }
+                        break;
+                    case 3:
+                        if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.THE_SILENT &&
+                                AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD) {
+                            this.relicReward = new WrathOfTheSilent();
+                            this.cardReward = new WraithForm();
+                            option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_SILENT;
+                            option.challengeDesc = CHALLENGE_TEXT[16];
+                        } else {
+                            this.relicReward = new WrathOfTheDefect();
+                            this.cardReward = new EchoForm();
+                            option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_DEFECT;
+                            option.challengeDesc = CHALLENGE_TEXT[17];
+                        }
+                        break;
+                    case 4:
+                        if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.DEFECT &&
+                                AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.THE_SILENT &&
+                                AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD) {
+                            this.relicReward = new WrathOfTheDefect();
+                            this.cardReward = new EchoForm();
+                            option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_DEFECT;
+                            option.challengeDesc = CHALLENGE_TEXT[17];
+                        } else {
+                            this.relicReward = new WrathOfTheWatcher();
+                            this.cardReward = new DevaForm();
+                            option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_WATCHER;
+                            option.challengeDesc = CHALLENGE_TEXT[18];
+                        }
+                        break;
+                    case 5:
+                        if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.WATCHER &&
+                                AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.DEFECT &&
+                                AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.THE_SILENT &&
+                                AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD) {
+                            this.relicReward = new WrathOfTheWatcher();
+                            this.cardReward = new DevaForm();
+                            option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_WATCHER;
+                            option.challengeDesc = CHALLENGE_TEXT[18];
+                        } /*else {
+                            option.challengeType = NeowTheStreamerChallengeType.NEOWS_PRANK;
+                            option.challengeDesc = CHALLENGE_TEXT[11];
+                            option.rewardType = NeowTheStreamerRewardType.UPGRADE_RELIC;
+                            option.rewardDesc = REWARD_TEXT[13];
+                        }*/
                         break;
                     default:
                         logger.info("Option in category 2 out of index");
