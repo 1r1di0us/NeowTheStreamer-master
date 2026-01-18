@@ -10,7 +10,7 @@ public class YoutubesBlessing extends BaseCard {
     public static String ID = makeID("YoutubesBlessing");
 
     public YoutubesBlessing() {
-        super(ID, new CardStats(CardColor.CURSE, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF,0));
+        super(ID, new CardStats(CardColor.CURSE, CardType.CURSE, CardRarity.SPECIAL, CardTarget.SELF,0));
         SoulboundField.soulbound.set(this, true);
         this.magicNumber = this.baseMagicNumber = 3;
         this.cardsToPreview = new YoutubesRevenge();

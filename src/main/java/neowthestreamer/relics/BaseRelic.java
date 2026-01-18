@@ -1,6 +1,7 @@
 package neowthestreamer.relics;
 
 import basemod.abstracts.CustomRelic;
+import basemod.abstracts.CustomSavable;
 import basemod.helpers.RelicType;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -152,6 +153,32 @@ public abstract class BaseRelic extends CustomRelic {
             default:
                 logger.info("Incorrect Challenge Reward");
                 return 0;
+        }
+    }
+
+    public NeowTheStreamerReward.NeowTheStreamerRewardType loadRewardFromIndex(int rewardIndex) {
+        switch (rewardIndex) {
+            case 0:
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
+            case 1:
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.RANDOM_COMMON_RELIC;
+            case 2:
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.MAX_HP;
+            case 3:
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.GOLD;
+            case 4:
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.GOLD_AND_POTION;
+            case 5:
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.TRANSFORM_CARD;
+            case 6:
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.UPGRADE_RANDOM;
+            case 7:
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.REMOVE_CARD;
+            case 8:
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.DUPLICATE_CARD;
+            default:
+                logger.info("Incorrect Challenge Reward");
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
         }
     }
 

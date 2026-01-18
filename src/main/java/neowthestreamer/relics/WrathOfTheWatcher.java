@@ -3,6 +3,7 @@ package neowthestreamer.relics;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.blue.EchoForm;
+import com.megacrit.cardcrawl.cards.purple.DevaForm;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -14,7 +15,7 @@ import static neowthestreamer.NeowTheStreamer.makeID;
 public class WrathOfTheWatcher extends BaseRelic {
     public static String ID = makeID("WrathOfTheWatcher");
 
-    public static final int turn = 5;
+    public static final int turn = 4;
 
     public WrathOfTheWatcher() {
         super(ID, AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.HEAVY);
@@ -37,7 +38,7 @@ public class WrathOfTheWatcher extends BaseRelic {
             flash();
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
             addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new WrathOfTheWatcherPower(AbstractDungeon.player, turn-1)));
-            // 4 on turn 1, 3 on turn 2, 2 on turn 3, 1 on turn 4, and die on turn 5.
+            // 3 on turn 1, 2 on turn 2, 1 on turn 3, die on turn 4
             this.counter--;
             if (this.counter == 0) {
                 this.counter = -1;
@@ -48,7 +49,7 @@ public class WrathOfTheWatcher extends BaseRelic {
     public void onVictory() {
         if (this.counter == -1 && !this.usedUp) {
             flash();
-            AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(new EchoForm(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+            AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(new DevaForm(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
             usedUp();
         }
     }

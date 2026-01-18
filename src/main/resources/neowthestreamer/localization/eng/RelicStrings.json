@@ -17,9 +17,9 @@
     "FLAVOR": "Challenge Accepted!",
     "DESCRIPTIONS": [
       "For every ",
-      " combats where you go below ",
-      " HP, add a Reward (max 5). Ends upon entering act 2.",
-      " Combat counter: "
+      " combats where you reach ",
+      " or less HP, add a Reward (max 5). Ends upon entering act 2.",
+      " Rewards Achieved: "
     ]
   },
   "${modID}:HitlessChallenge": {
@@ -28,9 +28,9 @@
     "DESCRIPTIONS": [
       "For every ",
       " floors climbed past the first ",
-      " without taking unblocked damage, add a Reward (max 5). Ends upon entering act 2.",
-      " Floor counter: ",
-      " Failed at: "
+      " without taking unblocked attack damage, add a Reward (max 5). Ends upon entering act 2.",
+      " Rewards Achieved: ",
+      " Failed on floor: "
     ]
   },
   "${modID}:GoldHoardingChallenge": {
@@ -55,7 +55,7 @@
     "NAME": "Mark of the Neoom",
     "FLAVOR": "Why didn't fairy in a bottle proc?",
     "DESCRIPTIONS": [
-      "Gives Mark of the Bloom. Removes it at the start of act 2."
+      "You can no longer heal. Ends at the start of act 2."
     ]
   },
   "${modID}:WrathOfTheIronclad": {

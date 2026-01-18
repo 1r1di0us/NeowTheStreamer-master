@@ -1,5 +1,6 @@
 package neowthestreamer.cards;
 
+import basemod.patches.com.megacrit.cardcrawl.dungeons.AbstractDungeon.NoPools;
 import com.evacipated.cardcrawl.mod.stslib.fields.cards.AbstractCard.SoulboundField;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,7 +13,7 @@ public class YoutubesRevenge extends BaseCard {
     public static String ID = makeID("YoutubesRevenge");
 
     public YoutubesRevenge() {
-        super(ID, new CardStats(CardColor.CURSE, CardType.SKILL, CardRarity.SPECIAL, CardTarget.SELF,-2));
+        super(ID, new CardStats(CardColor.CURSE, CardType.CURSE, CardRarity.SPECIAL, CardTarget.NONE,-2));
         SoulboundField.soulbound.set(this, true);
         this.magicNumber = this.baseMagicNumber = 3;
         this.isEthereal = true;

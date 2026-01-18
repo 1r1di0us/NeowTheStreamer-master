@@ -1,21 +1,21 @@
 package neowthestreamer.relics;
 
+import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
+import neowthestreamer.interfaces.setRewardInterface;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
 
-public class GoldHoardingChallenge extends BaseRelic implements ActTwoChallengeInterface {
+public class GoldHoardingChallenge extends BaseRelic implements ActTwoChallengeInterface, setRewardInterface, CustomSavable<Integer> {
     public static String ID = makeID("GoldHoardingChallenge");
 
     public int goal;
     public int initial;
-    public boolean ended;
 
     public GoldHoardingChallenge() {
-        this(NeowTheStreamerReward.NeowTheStreamerRewardType.MAX_HP);
+        this(NeowTheStreamerReward.NeowTheStreamerRewardType.NONE);
     }
 
     public GoldHoardingChallenge(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
@@ -25,6 +25,13 @@ public class GoldHoardingChallenge extends BaseRelic implements ActTwoChallengeI
         this.initial = 99;
         this.reward = reward;
         this.description = getUpdatedDescription();
+        this.tips.get(0).body = this.description;
+    }
+
+    public void setReward(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
+        this.reward = reward;
+        this.description = getUpdatedDescription();
+        this.tips.get(0).body = this.description;
     }
 
     @Override
@@ -40,29 +47,46 @@ public class GoldHoardingChallenge extends BaseRelic implements ActTwoChallengeI
         if ((AbstractDungeon.player.gold - initial - (counter*goal)) >= goal) {
             counter++;
             this.description = getUpdatedDescription();
+            this.tips.get(0).body = this.description;
         }
     }
 
     public void onSpendGold() {
-        if ((AbstractDungeon.player.gold - initial) < counter*goal && !ended) {
+        if ((AbstractDungeon.player.gold - initial) < counter*goal && !usedUp) {
             if (AbstractDungeon.player.gold < initial) {
                 this.counter = 0;
             } else {
                 this.counter = ((AbstractDungeon.player.gold - initial) / goal);
             }
             this.description = getUpdatedDescription();
+            this.tips.get(0).body = this.description;
         }
     }
 
     public void onEnterActTwo() {
-        if (!ended) {
+        if (!usedUp) {
             if (this.counter > 0) {
                 this.activated = true;
             }
             NeowTheStreamerReward.activateChallengeRewards(this.reward, counter);
+            this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
             this.counter = -1;
-            this.ended = true;
             this.usedUp();
         }
+    }
+
+    @Override
+    public Integer onSave() {
+        return getRewardIndex(this.reward);
+    }
+
+    @Override
+    public void onLoad(Integer rewardIndex) {
+        if (rewardIndex == null) {
+            return;
+        }
+        this.reward = loadRewardFromIndex(rewardIndex);
+        this.description = getUpdatedDescription();
+        this.tips.get(0).body = this.description;
     }
 }
