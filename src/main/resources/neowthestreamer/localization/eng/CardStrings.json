@@ -1,4 +1,52 @@
 {
+  "${modID}:SoloSpam": {
+    "NAME": "Solo Spam",
+    "DESCRIPTION": "Exhaust. NL At the end of your turn, lowers its cost by !M! and shuffles a copy into your draw pile."
+  },
+  "${modID}:Om": {
+    "NAME": "Om",
+    "DESCRIPTION": "Retain. NL While in hand, whenever you take unblocked damage, shuffle a copy into your draw pile."
+  },
+  "${modID}:Scam": {
+    "NAME": "Scam!",
+    "DESCRIPTION": "Unplayable. NL When drawn, set a random card's cost to !M! for the rest of combat."
+  },
+  "${modID}:DeezNuts": {
+    "NAME": "Deez Nuts",
+    "DESCRIPTION": "Disguises itself as a card in your deck. NL When played, lose !M! hp and fill your hand with *Gottem."
+  },
+  "${modID}:Gottem": {
+    "NAME": "Gottem",
+    "DESCRIPTION": "Unplayable. NL Ethereal. NL At the end of your turn, lose !M! hp."
+  },
+  "${modID}:First": {
+    "NAME": "First!",
+    "DESCRIPTION": "Innate. NL Unplayable. Ethereal. NL At the end of your turn place a *Second! on top of your draw pile."
+  },
+  "${modID}:Second": {
+    "NAME": "Second!",
+    "DESCRIPTION": "Unplayable. NL Ethereal. NL At the end of your turn place a *Third! on top of your draw pile."
+  },
+  "${modID}:Third": {
+    "NAME": "Third!",
+    "DESCRIPTION": "Unplayable. NL Ethereal."
+  },
+  "${modID}:Like": {
+    "NAME": "Like",
+    "DESCRIPTION": "Unplayable. NL When drawn, add a *Subscribe to your hand."
+  },
+  "${modID}:Subscribe": {
+    "NAME": "Subscribe",
+    "DESCRIPTION": "Retain. Exhaust. NL When retained, lower its cost by !M! and shuffle a *New *Video into your draw pile."
+  },
+  "${modID}:NewVideo": {
+    "NAME": "New Video!",
+    "DESCRIPTION": "Ethereal. NL Exhaust."
+  },
+  "${modID}:Clickbait": {
+    "NAME": "Clickbait",
+    "DESCRIPTION": "If removed or transformed, lose !${modID}:m2! hp. NL When played, reduce this hp loss by !M!."
+  },
   "${modID}:YoutubesBlessing": {
     "NAME": "Youtube's Blessing",
     "DESCRIPTION": "Unremovable. NL Draw !M! cards. NL Transforms into Youtube's Revenge in act 4."

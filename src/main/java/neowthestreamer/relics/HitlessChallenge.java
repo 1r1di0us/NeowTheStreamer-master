@@ -69,6 +69,18 @@ public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterf
     }
 
     public void onEnterRoom(AbstractRoom room) {
+        /*if (AbstractDungeon.actNum == 2 && !this.usedUp) {
+            this.amount = (this.counter - this.initial) / this.goal;
+            if (this.amount > 5) amount = 5;
+            if (this.amount > 0) {
+                this.activated = true;
+            }
+            NeowTheStreamerReward.activateChallengeRewards(this.reward, amount);
+            this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
+            this.amount = -1;
+            this.counter = -1;
+            this.usedUp();
+        } else */
         if (!failed && !usedUp && this.amount < 5 && this.counter < AbstractDungeon.floorNum) {
             flash();
             this.counter = AbstractDungeon.floorNum;

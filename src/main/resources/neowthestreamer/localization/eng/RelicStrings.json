@@ -72,10 +72,10 @@
     "NAME": "Wrath of the Silent",
     "FLAVOR": "Sorry man, the monsters asked for it first.",
     "DESCRIPTIONS": [
-      "At the start of the next ",
+      "For of the next ",
       " combat, ALL enemies gain ",
       " combats, ALL enemies gain ",
-      " Intangible. REWARD: Obtain Wraith Form."
+      " Thorns. REWARD: Obtain Wraith Form."
     ]
   },
   "${modID}:WrathOfTheDefect": {

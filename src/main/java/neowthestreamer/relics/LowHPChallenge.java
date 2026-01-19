@@ -80,6 +80,21 @@ public class LowHPChallenge extends BaseRelic implements ActTwoChallengeInterfac
         }
     }
 
+    /*public void onEnterRoom(AbstractRoom room) {
+        if (AbstractDungeon.actNum == 2 && !this.usedUp) {
+            this.amount = this.counter / this.goal;
+            if (this.amount > 5) amount = 5;
+            if (this.amount > 0) {
+                this.activated = true;
+            }
+            NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
+            this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
+            this.counter = -1;
+            this.amount = -1;
+            this.usedUp();
+        }
+    }*/
+
     public void onEnterActTwo() {
         if (!usedUp) {
             this.amount = this.counter / this.goal;

@@ -43,6 +43,11 @@ public abstract class BaseCard extends CustomCard {
     protected int blockUpgrade;
     protected int magicUpgrade;
 
+    public int secondMagic;
+    public int baseSecondMagic;
+    public boolean upgradedSecondMagic;
+    public boolean isSecondMagicModified;
+
     protected boolean baseExhaust = false;
     protected boolean upgExhaust = false;
     protected boolean baseEthereal = false;
@@ -591,10 +596,25 @@ public abstract class BaseCard extends CustomCard {
     @Override
     public void resetAttributes() {
         super.resetAttributes();
-
+        secondMagic = baseSecondMagic;
+        isSecondMagicModified = false;
         for (LocalVarInfo var : cardVariables.values()) {
             var.value = var.base;
         }
+    }
+
+    public void displayUpgrades() {
+        super.displayUpgrades();
+        if (upgradedSecondMagic) {
+            secondMagic = baseSecondMagic;
+            isSecondMagicModified = true;
+        }
+    }
+
+    protected void upgradeSecondMagic(int amount) {
+        baseSecondMagic += amount;
+        secondMagic = baseSecondMagic;
+        upgradedSecondMagic = true;
     }
 
     private static class QuickDynamicVariable extends DynamicVariable {

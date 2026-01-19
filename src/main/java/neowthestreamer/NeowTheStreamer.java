@@ -4,17 +4,18 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
-import com.badlogic.gdx.utils.compression.lzma.Base;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.neow.NeowEvent;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import neowthestreamer.cards.BaseCard;
 import neowthestreamer.cards.YoutubesBlessing;
 import neowthestreamer.cards.YoutubesRevenge;
+import neowthestreamer.cards.cardvars.SecondMagicNumber;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
+import com.megacrit.cardcrawl.random.Random;
 import neowthestreamer.relics.BaseRelic;
 import neowthestreamer.util.GeneralUtils;
 import neowthestreamer.util.KeywordInfo;
@@ -239,7 +240,7 @@ public class NeowTheStreamer implements
 
     @Override
     public void receiveEditCards() {
-        //BaseMod.addDynamicVariable(new SecondMagicNumber());
+        BaseMod.addDynamicVariable(new SecondMagicNumber());
         //BaseMod.addDynamicVariable(new ThirdMagicNumber());
         //BaseMod.addDynamicVariable(new SecondDamage());
         //BaseMod.addDynamicVariable(new SecondBlock());
@@ -313,6 +314,10 @@ public class NeowTheStreamer implements
         else {
             throw new RuntimeException("Failed to determine mod info/ID based on initializer.");
         }
+    }
+
+    public static <T> T getRandomItem(List<T> list, Random rng) {
+        return list.isEmpty() ? null : list.get(rng.random(list.size() - 1));
     }
 
     @Override
