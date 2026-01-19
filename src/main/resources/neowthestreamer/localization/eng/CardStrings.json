@@ -45,7 +45,7 @@
   },
   "${modID}:Clickbait": {
     "NAME": "Clickbait",
-    "DESCRIPTION": "If removed or transformed, lose !${modID}:m2! hp. NL When played, reduce this hp loss by !M!."
+    "DESCRIPTION": "If removed or transformed, NL lose !${modID}:m2! hp. NL When played, reduce this hp loss by !M!."
   },
   "${modID}:YoutubesBlessing": {
     "NAME": "Youtube's Blessing",

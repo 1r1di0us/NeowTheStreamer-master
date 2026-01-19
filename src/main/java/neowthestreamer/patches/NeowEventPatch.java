@@ -103,7 +103,7 @@ public class NeowEventPatch {
         }
     }*/
 
-    @SpirePatch(
+    /*@SpirePatch(
             clz = NeowEvent.class,
             method = "buttonEffect"
     )
@@ -122,7 +122,7 @@ public class NeowEventPatch {
                 return new int[]{LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher)[0]};
             }
         }
-    }
+    }*/
 
     static void chooseCards(NeowEvent self) {
         ReflectionHacks.setPrivate(self, NeowEvent.class, "pickCard", true);

@@ -25,7 +25,7 @@ public class WrathOfTheWatcher extends BaseRelic {
     @Override
     public String getUpdatedDescription() {
         if (this.counter == -1) {
-            return this.DESCRIPTIONS[0] + 6 + this.DESCRIPTIONS[1] + 5 + this.DESCRIPTIONS[3];
+            return this.DESCRIPTIONS[0] + 6 + this.DESCRIPTIONS[1] + 4 + this.DESCRIPTIONS[3];
         } else if (this.counter == 1) {
             return this.DESCRIPTIONS[0] + this.counter + this.DESCRIPTIONS[2] + turn + this.DESCRIPTIONS[3];
         } else {
