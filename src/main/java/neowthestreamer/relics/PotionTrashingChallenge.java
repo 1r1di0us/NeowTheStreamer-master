@@ -1,29 +1,26 @@
 package neowthestreamer.relics;
 
 import basemod.abstracts.CustomSavable;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
+import neowthestreamer.interfaces.OnPotionDiscardInterface;
 import neowthestreamer.interfaces.SetRewardInterface;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
 
-public class LowHPChallenge extends BaseRelic implements ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
-    public static String ID = makeID("LowHPChallenge");
+public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscardInterface, ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
+    public static String ID = makeID("PotionTrashingChallenge");
 
     public final int goal = 2;
-    public final int maximum = 10;
-    public boolean achievedThisCombat;
 
-    public LowHPChallenge() {
+    public PotionTrashingChallenge() {
         this(NeowTheStreamerReward.NeowTheStreamerRewardType.NONE);
     }
 
-    public LowHPChallenge(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
+    public PotionTrashingChallenge(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
         this.reward = reward;
-        this.achievedThisCombat = false;
         this.description = getUpdatedDescription();
         this.tips.get(0).body = this.description;
     }
@@ -45,37 +42,11 @@ public class LowHPChallenge extends BaseRelic implements ActTwoChallengeInterfac
         this.amount = this.counter / this.goal;
         if (this.amount > 5) amount = 5;
         if (this.reward == null) {
-            return this.DESCRIPTIONS[0] + 2 + DESCRIPTIONS[1] + 10 + DESCRIPTIONS[2];
+            return this.DESCRIPTIONS[0] + 2 + DESCRIPTIONS[1];
         } else if (this.counter == -1) {
-            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.maximum + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)];
+            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + MSG[getRewardIndex(this.reward)];
         } else {
-            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.maximum + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[3] + amount;
-        }
-    }
-
-    public void atBattleStart() {
-        if (AbstractDungeon.player.currentHealth <= maximum && !usedUp && this.amount < 5) {
-            flash();
-            achievedThisCombat = true;
-            counter++;
-            this.description = getUpdatedDescription();
-            this.tips.get(0).body = this.description;
-        } else if (this.amount < 5 && !usedUp){
-            achievedThisCombat = false;
-            this.amount = this.counter / this.goal;
-            this.description = getUpdatedDescription();
-            this.tips.get(0).body = this.description;
-        }
-    }
-
-    public void wasHPLost(int damageAmount) {
-        if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT &&
-                AbstractDungeon.player.currentHealth - damageAmount <= maximum && !achievedThisCombat && !usedUp && this.amount < 5) {
-            flash();
-            achievedThisCombat = true;
-            counter++;
-            this.description = getUpdatedDescription();
-            this.tips.get(0).body = this.description;
+            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[3] + amount;
         }
     }
 
@@ -102,6 +73,15 @@ public class LowHPChallenge extends BaseRelic implements ActTwoChallengeInterfac
             if (this.amount > 0) {
                 NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
             }
+        }
+    }
+
+    public void OnPotionDiscard(AbstractPotion potion) {
+        if (!usedUp && this.amount < 5) {
+            flash();
+            this.counter++;
+            this.description = getUpdatedDescription();
+            this.tips.get(0).body = this.description;
         }
     }
 

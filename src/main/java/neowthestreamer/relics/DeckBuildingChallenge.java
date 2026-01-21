@@ -4,14 +4,14 @@ import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
-import neowthestreamer.interfaces.setRewardInterface;
+import neowthestreamer.interfaces.SetRewardInterface;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
 
-public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeInterface, setRewardInterface, CustomSavable<Integer> {
+public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
     public static String ID = makeID("DeckBuildingChallenge");
 
-    public int goal;
+    public final int goal = 4;
     public int initial;
 
     public DeckBuildingChallenge() {
@@ -21,7 +21,6 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
     public DeckBuildingChallenge(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
         this.counter = 0;
-        this.goal = 4;
         this.initial = 11;
         this.reward = reward;
         this.description = getUpdatedDescription();
@@ -36,6 +35,7 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
 
     @Override
     public String getUpdatedDescription() {
+        this.amount = counter;
         if (this.counter == -1) {
             return this.DESCRIPTIONS[0] + 4 + DESCRIPTIONS[1] + 11 + DESCRIPTIONS[2];
         } else {
@@ -68,13 +68,12 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
 
     public void onEnterActTwo() {
         if (!usedUp) {
-            if (this.counter > 0) {
-                this.activated = true;
+            this.amount = this.counter;
+            if (this.amount > 5) amount = 5;
+            this.activated = true;
+            if (this.amount > 0) {
+                NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
             }
-            NeowTheStreamerReward.activateChallengeRewards(this.reward, counter);
-            this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
-            this.counter = -1;
-            this.usedUp();
         }
     }
 

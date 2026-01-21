@@ -2,7 +2,7 @@ package neowthestreamer.patches;
 
 import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import neowthestreamer.cards.DeezNuts;
-import neowthestreamer.cards.IsDeezNutsModifier;
+import neowthestreamer.cards.cardmods.IsDeezNutsModifier;
 import basemod.helpers.CardModifierManager;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 public class DeezNutsPatches {
     @SpirePatch(clz = GameActionManager.class, method = "getNextAction")
-    public static class GhostSubvertPlay {
+    public static class DeezNutsSubvertPlay {
         @SpireInsertPatch(locator = Locator.class)
         public static void Insert(GameActionManager __instance) {
             CardQueueItem cqi = __instance.cardQueue.get(0);

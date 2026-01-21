@@ -1,14 +1,10 @@
 package neowthestreamer.relics;
 
 import basemod.abstracts.CustomRelic;
-import basemod.abstracts.CustomSavable;
 import basemod.helpers.RelicType;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.helpers.SaveHelper;
-import com.megacrit.cardcrawl.neow.NeowEvent;
-import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import neowthestreamer.NeowTheStreamerReward;
@@ -34,6 +30,7 @@ public abstract class BaseRelic extends CustomRelic {
 
     public boolean activated = false;
     public NeowTheStreamerReward.NeowTheStreamerRewardType reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
+    public int amount;
 
     //for character specific relics
     public BaseRelic(String id, String imageName, AbstractCard.CardColor pool, RelicTier tier, LandingSound sfx) {
@@ -185,42 +182,55 @@ public abstract class BaseRelic extends CustomRelic {
     public void update() {
         super.update();
         if (this.activated) {
-            if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
-                switch (this.reward) {
-                    case TRANSFORM_CARD:
-                        for (int i = 0; i < counter; i++) {
-                            AbstractDungeon.transformCard(AbstractDungeon.gridSelectScreen.selectedCards
-                                    .get(i), false, NeowEvent.rng);
-                            AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards
-                                    .get(i));
-                            AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(
-                                    AbstractDungeon.getTransformedCard(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                        }
-                        break;
-                    case REMOVE_CARD:
-                        for (int i = 0; i < counter; i++) {
-                            CardCrawlGame.sound.play("CARD_EXHAUST");
-                            AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards
-                                    .get(i), (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
-                            AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards
-                                    .get(i));
-                        }
-                        break;
-                    case DUPLICATE_CARD:
-                        for (int i = 0; i < counter; i++) {
-                            AbstractCard c = (AbstractDungeon.gridSelectScreen.selectedCards.get(i)).makeStatEquivalentCopy();
-                            AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(
-                                    c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                        }
-                        break;
-                    default:
-                        logger.info("[ERROR] Missing Challenge Reward Type: " + this.reward.name());
-                        break;
-                }
-                AbstractDungeon.gridSelectScreen.selectedCards.clear();
-                AbstractDungeon.overlayMenu.cancelButton.hide();
-                SaveHelper.saveIfAppropriate(SaveFile.SaveType.ENTER_ROOM);
+            if (this.amount == 0) {
+                this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
+                this.counter = -1;
+                this.amount = -1;
+                this.usedUp();
                 this.activated = false;
+            } else {
+                if (reward == NeowTheStreamerReward.NeowTheStreamerRewardType.TRANSFORM_CARD || reward == NeowTheStreamerReward.NeowTheStreamerRewardType.REMOVE_CARD || reward == NeowTheStreamerReward.NeowTheStreamerRewardType.DUPLICATE_CARD) {
+                    if (AbstractDungeon.gridSelectScreen.selectedCards.size() == this.amount) {
+                        AbstractDungeon.overlayMenu.proceedButton.hide();
+                        switch (this.reward) {
+                            case TRANSFORM_CARD:
+                                for (int i = 0; i < amount; i++) {
+                                    //AbstractDungeon.transformCard(AbstractDungeon.gridSelectScreen.selectedCards.get(i), false, NeowEvent.rng);
+                                    AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards.get(i));
+                                    AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(AbstractDungeon.getTransformedCard(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                                }
+                                break;
+                            case REMOVE_CARD:
+                                for (int i = 0; i < amount; i++) {
+                                    CardCrawlGame.sound.play("CARD_EXHAUST");
+                                    AbstractDungeon.topLevelEffects.add(new PurgeCardEffect(AbstractDungeon.gridSelectScreen.selectedCards.get(i), (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
+                                    AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards.get(i));
+                                }
+                                break;
+                            case DUPLICATE_CARD:
+                                for (int i = 0; i < amount; i++) {
+                                    AbstractCard c = (AbstractDungeon.gridSelectScreen.selectedCards.get(i)).makeStatEquivalentCopy();
+                                    AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(c, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                                }
+                                break;
+                        }
+                        AbstractDungeon.gridSelectScreen.selectedCards.clear();
+                        AbstractDungeon.overlayMenu.cancelButton.hide();
+                        this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
+                        this.counter = -1;
+                        this.amount = -1;
+                        this.usedUp();
+                        this.activated = false;
+                    } else {
+                        AbstractDungeon.overlayMenu.proceedButton.hide();
+                    }
+                } else {
+                    this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
+                    this.counter = -1;
+                    this.amount = -1;
+                    this.usedUp();
+                    this.activated = false;
+                }
             }
         }
     }

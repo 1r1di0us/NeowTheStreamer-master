@@ -2,6 +2,6 @@ package neowthestreamer.interfaces;
 
 import neowthestreamer.NeowTheStreamerReward;
 
-public interface setRewardInterface {
+public interface SetRewardInterface {
     void setReward(NeowTheStreamerReward.NeowTheStreamerRewardType reward);
 }

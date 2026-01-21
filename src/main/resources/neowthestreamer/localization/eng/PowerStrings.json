@@ -1,4 +1,10 @@
 {
+  "${modID}:DemonetizedPower": {
+    "NAME": "Demonetized",
+    "DESCRIPTIONS": [
+      "No money for you."
+    ]
+  },
   "${modID}:WrathOfTheWatcherPower": {
     "NAME": "Impending Doom",
     "DESCRIPTIONS": [

@@ -6,16 +6,15 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
-import neowthestreamer.interfaces.setRewardInterface;
+import neowthestreamer.interfaces.SetRewardInterface;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
 
-public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterface, setRewardInterface, CustomSavable<Integer> {
+public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
     public static String ID = makeID("HitlessChallenge");
 
     public final int goal = 3;
     public final int initial = 2;
-    public int amount;
     public boolean failed;
 
     public HitlessChallenge() {
@@ -93,14 +92,10 @@ public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterf
         if (!usedUp) {
             this.amount = (this.counter - this.initial) / this.goal;
             if (this.amount > 5) amount = 5;
+            this.activated = true;
             if (this.amount > 0) {
-                this.activated = true;
+                NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
             }
-            NeowTheStreamerReward.activateChallengeRewards(this.reward, amount);
-            this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
-            this.amount = -1;
-            this.counter = -1;
-            this.usedUp();
         }
     }
 

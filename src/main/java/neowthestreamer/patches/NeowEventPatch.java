@@ -1,6 +1,7 @@
 package neowthestreamer.patches;
 
 import basemod.ReflectionHacks;
+import com.evacipated.cardcrawl.modthespire.Loader;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -103,7 +104,7 @@ public class NeowEventPatch {
         }
     }*/
 
-    /*@SpirePatch(
+    @SpirePatch(
             clz = NeowEvent.class,
             method = "buttonEffect"
     )
@@ -113,16 +114,18 @@ public class NeowEventPatch {
                 localvars = {}
         )
         public static void Insert(NeowEvent __instance, int buttonPressed) {
-            NeowEventPatch.chooseCards((NeowEvent)AbstractDungeon.getCurrRoom().event);
+            if (!Loader.isModLoaded("versus")) {
+                NeowEventPatch.chooseCards((NeowEvent) AbstractDungeon.getCurrRoom().event);
+            }
         }
 
         private static class Locator extends SpireInsertLocator {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
                 Matcher finalMatcher = new Matcher.MethodCallMatcher(RoomEventDialog.class, "clearRemainingOptions");
-                return new int[]{LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher)[0]};
+                return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher)[0]};
             }
         }
-    }*/
+    }
 
     static void chooseCards(NeowEvent self) {
         ReflectionHacks.setPrivate(self, NeowEvent.class, "pickCard", true);

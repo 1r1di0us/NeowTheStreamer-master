@@ -1,6 +1,7 @@
 package neowthestreamer.cards;
 
 import basemod.abstracts.CustomSavable;
+import com.evacipated.cardcrawl.mod.stslib.StSLib;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -11,37 +12,59 @@ import neowthestreamer.util.CardStats;
 
 public class Clickbait extends BaseCard implements CustomSavable<Integer> {
     public static String ID = makeID("Clickbait");
-    public static int damageOnRemove;
+    public int damageOnRemove;
 
     public Clickbait() {
         super(ID, new CardStats(AbstractCard.CardColor.CURSE, AbstractCard.CardType.CURSE, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE,1));
         this.magicNumber = this.baseMagicNumber = 5;
-        damageOnRemove = this.secondMagic = this.baseSecondMagic = 100;
+        this.damageOnRemove = this.secondMagic = this.baseSecondMagic = 100;
+    }
+
+    public Clickbait(int damageOnRemove) {
+        super(ID, new CardStats(AbstractCard.CardColor.CURSE, AbstractCard.CardType.CURSE, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE,1));
+        this.magicNumber = this.baseMagicNumber = 5;
+        this.damageOnRemove = this.secondMagic = this.baseSecondMagic = damageOnRemove;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (this.secondMagic > 0) {
-            damageOnRemove = this.secondMagic = this.baseSecondMagic = damageOnRemove - this.magicNumber;
+            this.damageOnRemove = this.secondMagic = this.baseSecondMagic = this.damageOnRemove - this.magicNumber;
+            for (AbstractCard c : p.masterDeck.group) {
+                if (c instanceof Clickbait) {
+                    ((Clickbait) StSLib.getMasterDeckEquivalent(this)).playMasterDeckEquivalent();
+                }
+            }
         }
-        // this doesn't update the one in your deck
+    }
+
+    public void playMasterDeckEquivalent() {
+        if (this.secondMagic > 0) {
+            this.damageOnRemove = this.secondMagic = this.baseSecondMagic = this.damageOnRemove - this.magicNumber;
+        }
     }
 
     public void onRemoveFromMasterDeck() {
-        if (damageOnRemove > 0) {
+        if (this.damageOnRemove > 0) {
             CardCrawlGame.sound.play("BLOOD_SWISH");
-            AbstractDungeon.player.damage(new DamageInfo(null, damageOnRemove, DamageInfo.DamageType.HP_LOSS));
+            AbstractDungeon.player.damage(new DamageInfo(null, this.damageOnRemove, DamageInfo.DamageType.HP_LOSS));
         }
     }
 
     @Override
     public Integer onSave() {
-        return damageOnRemove;
+        return this.damageOnRemove;
     }
 
     @Override
-    public void onLoad(Integer integer) {
-        if (integer != null) {
-            damageOnRemove = this.baseSecondMagic = this.secondMagic = integer;
+    public void onLoad(Integer dmgAmt) {
+        if (dmgAmt != null) {
+            this.damageOnRemove = this.baseSecondMagic = this.secondMagic = dmgAmt;
+        } else {
+            this.damageOnRemove = this.baseSecondMagic = this.secondMagic = 100;
         }
+    }
+
+    public AbstractCard makeCopy() {
+        return new Clickbait(this.damageOnRemove);
     }
 }

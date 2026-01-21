@@ -4,11 +4,15 @@ import basemod.AutoAdd;
 import basemod.BaseMod;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import neowthestreamer.cards.Backseat;
 import neowthestreamer.cards.BaseCard;
 import neowthestreamer.cards.YoutubesBlessing;
 import neowthestreamer.cards.YoutubesRevenge;
@@ -50,7 +54,8 @@ public class NeowTheStreamer implements
         EditKeywordsSubscriber,
         AddAudioSubscriber,
         PostInitializeSubscriber,
-        StartActSubscriber {
+        StartActSubscriber,
+        PrePotionUseSubscriber {
     public static ModInfo info;
     public static String modID; //Edit your pom.xml to change this
     static { loadModInfo(); }
@@ -327,10 +332,30 @@ public class NeowTheStreamer implements
             AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(
                     new YoutubesRevenge(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
         }
-        if (AbstractDungeon.actNum == 2) {
+        /*if (AbstractDungeon.actNum == 2) {
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 if (r instanceof ActTwoChallengeInterface) {
                     ((ActTwoChallengeInterface) r).onEnterActTwo();
+                }
+            }
+        }*/
+    }
+
+    public void receivePrePotionUse(AbstractPotion potion) {
+        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+            for (AbstractCard c : AbstractDungeon.player.hand.group) {
+                if (c instanceof Backseat) {
+                    AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(c, AbstractDungeon.player.hand));
+                }
+            }
+            for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+                if (c instanceof Backseat) {
+                    AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(c, AbstractDungeon.player.drawPile));
+                }
+            }
+            for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+                if (c instanceof Backseat) {
+                    AbstractDungeon.actionManager.addToBottom(new ExhaustSpecificCardAction(c, AbstractDungeon.player.discardPile));
                 }
             }
         }

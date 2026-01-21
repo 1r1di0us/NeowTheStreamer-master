@@ -33,6 +33,15 @@
       " Failed on floor: "
     ]
   },
+  "${modID}:PotionTrashingChallenge": {
+    "NAME": "Potion Trashing Challenge",
+    "FLAVOR": "Challenge Accepted!",
+    "DESCRIPTIONS": [
+      "For every ",
+      " potions discarded, add a Reward (max 5). Ends upon entering act 2.",
+      " Rewards Achieved: "
+    ]
+  },
   "${modID}:GoldHoardingChallenge": {
     "NAME": "Gold Hoarding Challenge",
     "FLAVOR": "Challenge Accepted!",
@@ -70,7 +79,7 @@
   },
   "${modID}:WrathOfTheSilent": {
     "NAME": "Wrath of the Silent",
-    "FLAVOR": "Sorry man, the monsters asked for it first.",
+    "FLAVOR": "Feels prickly",
     "DESCRIPTIONS": [
       "For of the next ",
       " combat, ALL enemies gain ",

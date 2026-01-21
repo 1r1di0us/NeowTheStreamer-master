@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import neowthestreamer.NeowTheStreamer;
+import neowthestreamer.cards.cardmods.IsDeezNutsModifier;
 import neowthestreamer.util.CardStats;
 
 import java.util.List;

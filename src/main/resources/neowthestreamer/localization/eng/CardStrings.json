@@ -1,7 +1,43 @@
 {
-  "${modID}:SoloSpam": {
-    "NAME": "Solo Spam",
-    "DESCRIPTION": "Exhaust. NL At the end of your turn, lowers its cost by !M! and shuffles a copy into your draw pile."
+  "${modID}:Backseat": {
+    "NAME": "Backseat",
+    "DESCRIPTION": "Unplayable. NL When drawn, shuffle a copy into your draw pile. NL Exhausts when you use a potion."
+  },
+  "${modID}:Clickbait": {
+    "NAME": "Clickbait",
+    "DESCRIPTION": "If removed or transformed, NL lose !${modID}:m2! hp. NL When played, reduce this hp loss by !M!."
+  },
+  "${modID}:DayZeroAsking": {
+    "NAME": "Day 0 Asking",
+    "DESCRIPTION": "Die. NL Remove this card from your deck. NL Duplicates every !M! days.",
+    "EXTENDED_DESCRIPTION": [
+      "Day ",
+      " Asking"
+    ]
+  },
+  "${modID}:DeezNuts": {
+    "NAME": "Deez Nuts",
+    "DESCRIPTION": "Disguises itself as a card in your deck. NL When played, lose !M! hp and fill your hand with *Gottem."
+  },
+  "${modID}:Demonetized": {
+    "NAME": "Demonetized",
+    "DESCRIPTION": "Unplayable. NL When drawn, removes gold rewards from combat rewards."
+  },
+  "${modID}:First": {
+    "NAME": "First!",
+    "DESCRIPTION": "Innate. NL Unplayable. Ethereal. NL At the end of your turn place a *Second! on top of your draw pile."
+  },
+  "${modID}:Gottem": {
+    "NAME": "Gottem",
+    "DESCRIPTION": "Unplayable. NL Ethereal. NL At the end of your turn, lose !M! hp."
+  },
+  "${modID}:Like": {
+    "NAME": "Like",
+    "DESCRIPTION": "Unplayable. NL When drawn, add a *Subscribe to your hand."
+  },
+  "${modID}:NewVideo": {
+    "NAME": "New Video!",
+    "DESCRIPTION": "Ethereal. NL Exhaust."
   },
   "${modID}:Om": {
     "NAME": "Om",
@@ -11,41 +47,21 @@
     "NAME": "Scam!",
     "DESCRIPTION": "Unplayable. NL When drawn, set a random card's cost to !M! for the rest of combat."
   },
-  "${modID}:DeezNuts": {
-    "NAME": "Deez Nuts",
-    "DESCRIPTION": "Disguises itself as a card in your deck. NL When played, lose !M! hp and fill your hand with *Gottem."
-  },
-  "${modID}:Gottem": {
-    "NAME": "Gottem",
-    "DESCRIPTION": "Unplayable. NL Ethereal. NL At the end of your turn, lose !M! hp."
-  },
-  "${modID}:First": {
-    "NAME": "First!",
-    "DESCRIPTION": "Innate. NL Unplayable. Ethereal. NL At the end of your turn place a *Second! on top of your draw pile."
-  },
   "${modID}:Second": {
     "NAME": "Second!",
     "DESCRIPTION": "Unplayable. NL Ethereal. NL At the end of your turn place a *Third! on top of your draw pile."
   },
-  "${modID}:Third": {
-    "NAME": "Third!",
-    "DESCRIPTION": "Unplayable. NL Ethereal."
-  },
-  "${modID}:Like": {
-    "NAME": "Like",
-    "DESCRIPTION": "Unplayable. NL When drawn, add a *Subscribe to your hand."
+  "${modID}:SoloSpam": {
+    "NAME": "Solo Spam",
+    "DESCRIPTION": "Exhaust. NL At the end of your turn, lowers its cost by !M! and shuffles a copy into your draw pile."
   },
   "${modID}:Subscribe": {
     "NAME": "Subscribe",
     "DESCRIPTION": "Retain. Exhaust. NL When retained, lower its cost by !M! and shuffle a *New *Video into your draw pile."
   },
-  "${modID}:NewVideo": {
-    "NAME": "New Video!",
-    "DESCRIPTION": "Ethereal. NL Exhaust."
-  },
-  "${modID}:Clickbait": {
-    "NAME": "Clickbait",
-    "DESCRIPTION": "If removed or transformed, NL lose !${modID}:m2! hp. NL When played, reduce this hp loss by !M!."
+  "${modID}:Third": {
+    "NAME": "Third!",
+    "DESCRIPTION": "Unplayable. NL Ethereal."
   },
   "${modID}:YoutubesBlessing": {
     "NAME": "Youtube's Blessing",

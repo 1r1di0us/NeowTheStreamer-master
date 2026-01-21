@@ -719,4 +719,6 @@ public abstract class BaseCard extends CustomCard {
             return forceModified || base != value;
         }
     }
+
+
 }

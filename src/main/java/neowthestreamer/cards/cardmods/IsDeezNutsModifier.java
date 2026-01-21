@@ -1,11 +1,7 @@
-package neowthestreamer.cards;
+package neowthestreamer.cards.cardmods;
 
 import basemod.abstracts.AbstractCardModifier;
-import basemod.helpers.CardModifierManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
 
