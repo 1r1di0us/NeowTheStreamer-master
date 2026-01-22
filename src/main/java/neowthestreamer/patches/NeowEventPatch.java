@@ -7,10 +7,8 @@ import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.curses.AscendersBane;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.RoomEventDialog;
-import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.neow.NeowEvent;
 import com.megacrit.cardcrawl.neow.NeowReward;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -20,37 +18,7 @@ import neowthestreamer.NeowTheStreamerReward;
 
 import java.util.ArrayList;
 
-import static neowthestreamer.NeowTheStreamer.makeID;
-
-
-
 public class NeowEventPatch {
-
-    /*@SpirePatch(
-            clz = NeowEvent.class,
-            method = "blessing"
-    )
-    public static class RedoRewards {
-        @SpireInsertPatch(
-                locator = Locator1.class,
-                localvars = {}
-        )
-        public static void Insert(NeowEvent __instance) {
-            ArrayList<NeowReward> rewards = new ArrayList<>();
-            rewards.add(new NeowTheStreamerReward(0));
-            rewards.add(new NeowTheStreamerReward(1));
-            rewards.add(new NeowTheStreamerReward(2));
-            rewards.add(new NeowTheStreamerReward(3));
-            ReflectionHacks.setPrivate(__instance, NeowEvent.class, "rewards", rewards);
-        }
-
-        private static class Locator1 extends SpireInsertLocator {
-            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(RoomEventDialog.class, "clearRemainingOptions");
-                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
-            }
-        }
-    }*/
 
     @SpirePatch(
             clz = NeowEvent.class,

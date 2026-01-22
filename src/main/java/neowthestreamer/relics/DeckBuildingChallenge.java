@@ -2,6 +2,7 @@ package neowthestreamer.relics;
 
 import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
 import neowthestreamer.interfaces.SetRewardInterface;
@@ -24,19 +25,23 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
         this.initial = 11;
         this.reward = reward;
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
     }
 
     public void setReward(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
         this.reward = reward;
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
     }
 
     @Override
     public String getUpdatedDescription() {
         this.amount = counter;
-        if (this.counter == -1) {
+        if (this.counter == -1 || getRewardIndex(this.reward) == 0) {
             return this.DESCRIPTIONS[0] + 4 + DESCRIPTIONS[1] + 11 + DESCRIPTIONS[2];
         } else {
             return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.initial + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)];
@@ -47,24 +52,11 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
         if ((AbstractDungeon.player.masterDeck.size() - initial) / goal != counter && !usedUp) {
             counter = (AbstractDungeon.player.masterDeck.size() - initial) / goal;
             this.description = getUpdatedDescription();
-            this.tips.get(0).body = this.description;
+            this.tips.clear();
+            this.tips.add(new PowerTip(this.name, this.description));
+            initializeTips();
         }
     }
-
-    /*public void onEnterRoom(AbstractRoom room) {
-        if (AbstractDungeon.actNum == 2 && !this.usedUp) {
-            this.amount = this.counter / this.goal;
-            if (this.amount > 5) amount = 5;
-            if (this.amount > 0) {
-                this.activated = true;
-            }
-            NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
-            this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
-            this.counter = -1;
-            this.amount = -1;
-            this.usedUp();
-        }
-    }*/
 
     public void onEnterActTwo() {
         if (!usedUp) {
@@ -89,6 +81,8 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
         }
         this.reward = loadRewardFromIndex(rewardIndex);
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
     }
 }

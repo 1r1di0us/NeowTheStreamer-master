@@ -1,7 +1,7 @@
 {
   "${modID}:BaseRelic": {
     "DESCRIPTIONS": [
-      "This challenge has been completed!",
+      " This challenge has been completed!",
       " REWARD: Obtain a random common relic.",
       " REWARD: Gain 7 Max HP.",
       " REWARD: Gain 100 Gold.",
@@ -9,7 +9,8 @@
       " REWARD: Transform 1 card.",
       " REWARD: Upgrade 1 random card.",
       " REWARD: Remove 1 card and lose 2 Max HP.",
-      " REWARD: Duplicate 1 card and lose 4 Max HP."
+      " REWARD: Duplicate 1 card and lose 4 Max HP.",
+      "This relic is used up."
     ]
   },
   "${modID}:LowHPChallenge": {
@@ -42,6 +43,14 @@
       " Rewards Achieved: "
     ]
   },
+  "${modID}:KeySmashingChallenge": {
+    "NAME": "Key Smashing Challenge",
+    "FLAVOR": "Challenge Accepted!",
+    "DESCRIPTIONS": [
+      "Whenever you obtain a key, discard it and add a Reward (max 5). You can re-obtain discarded keys. Ends upon entering act 2.",
+      " Rewards Achieved: "
+    ]
+  },
   "${modID}:GoldHoardingChallenge": {
     "NAME": "Gold Hoarding Challenge",
     "FLAVOR": "Challenge Accepted!",
@@ -60,11 +69,56 @@
       " in your deck, add a Reward (max 5). Removing cards updates rewards. Ends upon entering act 2."
     ]
   },
+  "${modID}:NeowsPrank": {
+    "NAME": "Neow's Prank",
+    "FLAVOR": "Why didn't fairy in a bottle proc?",
+    "DESCRIPTIONS": [
+      "The first 3 combats are replaced with a random act 1 boss that gives normal fight rewards.",
+      "This relic has been used up!"
+    ]
+  },
   "${modID}:MarkOfTheNeoom": {
     "NAME": "Mark of the Neoom",
     "FLAVOR": "Why didn't fairy in a bottle proc?",
     "DESCRIPTIONS": [
       "You can no longer heal. Ends at the start of act 2."
+    ]
+  },
+  "${modID}:MaskOfMidas": {
+    "NAME": "Mask of Midas",
+    "FLAVOR": "I like cards.",
+    "DESCRIPTIONS": [
+      "The shop's card removals are replaced with card duplications."
+    ]
+  },
+  "${modID}:PearWheel": {
+    "NAME": "Pear Wheel",
+    "FLAVOR": "\"If you like pears, why would you want an enemy that spits pear juice? That seems disrespectful.\" -Casey",
+    "DESCRIPTIONS": [
+      "Card rewards give 2 of the same card."
+    ]
+  },
+  "${modID}:ChatsRevenge": {
+    "NAME": "Chat's Revenge",
+    "FLAVOR": "The source of all evil! Just gotta find mount doom...",
+    "DESCRIPTIONS": [
+      "Whenever you reach a main act boss, add a random NtS curse to your deck (and draw pile)."
+    ]
+  },
+  "${modID}:BodyOfCleric": {
+    "NAME": "Body Of Cleric",
+    "FLAVOR": "Is it hot in here or is it just me?",
+    "DESCRIPTIONS": [
+      "At the end of combat, gain ",
+      " max hp. Each act, increase this gain by "
+    ]
+  },
+  "${modID}:CardVoucher": {
+    "NAME": "Card Voucher",
+    "FLAVOR": "What a DEAL!",
+    "DESCRIPTIONS": [
+      "Streamer may use in any non-boss card reward to veto chat’s decision. 3 Uses. Right click to \"use\".",
+      "I can't use that in a boss reward!"
     ]
   },
   "${modID}:WrathOfTheIronclad": {
@@ -81,9 +135,9 @@
     "NAME": "Wrath of the Silent",
     "FLAVOR": "Feels prickly",
     "DESCRIPTIONS": [
-      "For of the next ",
-      " combat, ALL enemies gain ",
+      "At the start of the next ",
       " combats, ALL enemies gain ",
+      " combat, ALL enemies gain ",
       " Thorns. REWARD: Obtain Wraith Form."
     ]
   },

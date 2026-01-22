@@ -3,6 +3,7 @@ package neowthestreamer.relics;
 import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
@@ -27,26 +28,32 @@ public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterf
         this.reward = reward;
         this.failed = false;
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
     }
 
     public void onEquip() {
         this.counter = AbstractDungeon.floorNum;
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
     }
 
     public void setReward(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
         this.reward = reward;
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
     }
 
     @Override
     public String getUpdatedDescription() {
         this.amount = (this.counter - this.initial) / this.goal;
         if (this.amount > 5) amount = 5;
-        if (this.reward == null) {
+        if (this.reward == null || getRewardIndex(this.reward) == 0) {
             return this.DESCRIPTIONS[0] + 3 + DESCRIPTIONS[1] + 3 + DESCRIPTIONS[2];
         } else if (counter == -1) {
             return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.initial + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)];
@@ -62,29 +69,21 @@ public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterf
             flash();
             this.failed = true;
             this.description = getUpdatedDescription();
-            this.tips.get(0).body = this.description;
+            this.tips.clear();
+            this.tips.add(new PowerTip(this.name, this.description));
+            initializeTips();
         }
         return damageAmount;
     }
 
     public void onEnterRoom(AbstractRoom room) {
-        /*if (AbstractDungeon.actNum == 2 && !this.usedUp) {
-            this.amount = (this.counter - this.initial) / this.goal;
-            if (this.amount > 5) amount = 5;
-            if (this.amount > 0) {
-                this.activated = true;
-            }
-            NeowTheStreamerReward.activateChallengeRewards(this.reward, amount);
-            this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
-            this.amount = -1;
-            this.counter = -1;
-            this.usedUp();
-        } else */
         if (!failed && !usedUp && this.amount < 5 && this.counter < AbstractDungeon.floorNum) {
             flash();
             this.counter = AbstractDungeon.floorNum;
             this.description = getUpdatedDescription();
-            this.tips.get(0).body = this.description;
+            this.tips.clear();
+            this.tips.add(new PowerTip(this.name, this.description));
+            initializeTips();
         }
     }
 
@@ -111,6 +110,8 @@ public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterf
         }
         this.reward = loadRewardFromIndex(rewardIndex);
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
     }
 }

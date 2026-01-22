@@ -24,10 +24,6 @@ public class MarkOfTheNeoom extends BaseRelic {
         return this.DESCRIPTIONS[0];
     }
 
-    public void onEquip() {
-
-    }
-
     public void upgradeAll() {
         ArrayList<String> upgradedCards;
         int effectCount = 0;

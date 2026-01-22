@@ -179,47 +179,48 @@ public class NeowTheStreamerReward extends NeowReward {
                 }
                 break;
             case 1:
-                int challengeIndex = NeowEvent.rng.random(1, 4);
+                int challengeIndex = NeowEvent.rng.random(0, 5);
                 switch (challengeIndex) {
-                    /*case 0:
-                        option.challengeType = NeowTheStreamerChallengeType.DECK_OF_TERRIBLE_THINGS;
-                        option.challengeDesc = CHALLENGE_TEXT[2];
-                        break;*/
-                    case 1:
+                    case 0:
                         relicReward = new LowHPChallenge();
                         option.challengeType = NeowTheStreamerChallengeType.LOW_HP_CHALLENGE;
+                        option.challengeDesc = CHALLENGE_TEXT[2];
+                        break;
+                    case 1:
+                        relicReward = new HitlessChallenge();
+                        option.challengeType = NeowTheStreamerChallengeType.HITLESS_CHALLENGE;
                         option.challengeDesc = CHALLENGE_TEXT[3];
                         break;
                     case 2:
-                        relicReward = new HitlessChallenge();
-                        option.challengeType = NeowTheStreamerChallengeType.HITLESS_CHALLENGE;
+                        relicReward = new PotionTrashingChallenge();
+                        option.challengeType = NeowTheStreamerChallengeType.POTION_TRASHING_CHALLENGE;
                         option.challengeDesc = CHALLENGE_TEXT[4];
                         break;
                     case 3:
-                        relicReward = new PotionTrashingChallenge();
-                        option.challengeType = NeowTheStreamerChallengeType.POTION_TRASHING_CHALLENGE;
-                        option.challengeDesc = CHALLENGE_TEXT[5];
-                        break;
-                    /*case 4:
                         relicReward = new KeySmashingChallenge();
                         option.challengeType = NeowTheStreamerChallengeType.KEY_SMASHING_CHALLENGE;
-                        option.challengeDesc = CHALLENGE_TEXT[6];
-                        break;*/
+                        option.challengeDesc = CHALLENGE_TEXT[5];
+                        break;
                     case 4:
                         relicReward = new GoldHoardingChallenge();
                         option.challengeType = NeowTheStreamerChallengeType.GOLD_HOARDING_CHALLENGE;
-                        option.challengeDesc = CHALLENGE_TEXT[7];
+                        option.challengeDesc = CHALLENGE_TEXT[6];
                         break;
                     case 5:
                         relicReward = new DeckBuildingChallenge();
                         option.challengeType = NeowTheStreamerChallengeType.DECK_BUILDING_CHALLENGE;
-                        option.challengeDesc = CHALLENGE_TEXT[8];
+                        option.challengeDesc = CHALLENGE_TEXT[7];
                         break;
-                    /*case 7:
-                        curses.add(getCurseCards(NeowEvent.rng, 1));
+                    /*case 6:
+                        curses.add(getCurseCards(1));
                         relicReward = new CurseCarryingChallenge();
                         option.challengeType = NeowTheStreamerChallengeType.CURSE_CARRYING_CHALLENGE;
-                        option.challengeDesc = CHALLENGE_TEXT[1] + curses.get(0).name + CHALLENGE_TEXT[9];
+                        option.challengeDesc = CHALLENGE_TEXT[1] + curses.get(0).name + CHALLENGE_TEXT[8];
+                        break;
+                    case 7:
+                        relicReward = new DeckOfTerribleThingsChallenge();
+                        option.challengeType = NeowTheStreamerChallengeType.DECK_OF_TERRIBLE_THINGS;
+                        option.challengeDesc = CHALLENGE_TEXT[9];
                         break;*/
                     default:
                         logger.info("Challenge in category 1 out of index");
@@ -289,13 +290,7 @@ public class NeowTheStreamerReward extends NeowReward {
                 }
                 break;
             case 2:
-                int gigaOptionIndex;
-                if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD && AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.THE_SILENT && AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.DEFECT && AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.WATCHER) {
-                    gigaOptionIndex = NeowEvent.rng.random(0, 6);
-                    // no upgrading the starter relic on modded characters
-                } else {
-                    gigaOptionIndex = NeowEvent.rng.random(0,5);
-                }
+                int gigaOptionIndex = NeowEvent.rng.random(0,11);
                 switch (gigaOptionIndex) {
                     case 0:
                         relicReward = new MarkOfTheNeoom();
@@ -304,58 +299,59 @@ public class NeowTheStreamerReward extends NeowReward {
                         option.rewardType = NeowTheStreamerRewardType.UPGRADE_DECK;
                         option.rewardDesc = REWARD_TEXT[12];
                         break;
-                    /*case 2:
+                    case 1:
                         relicReward = new MaskOfMidas();
                         option.challengeType = NeowTheStreamerChallengeType.NONE;
                         option.challengeDesc = "";
                         option.rewardType = NeowTheStreamerRewardType.MASK_OF_MIDAS;
                         option.rewardDesc = REWARD_TEXT[14];
                         break;
-                    case 3:
+                    case 2:
                         relicReward = new PearWheel();
                         option.challengeType = NeowTheStreamerChallengeType.PEAR_WHEEL;
                         option.challengeDesc = CHALLENGE_TEXT[12];
                         option.rewardType = NeowTheStreamerRewardType.BUSTED_CROWN;
                         option.rewardDesc = REWARD_TEXT[15];
                         break;
-                    case 4:
+                    case 3:
+                        cardReward = new RitualDagger();
                         relicReward = new ChatsRevenge();
                         option.challengeType = NeowTheStreamerChallengeType.CHATS_REVENGE;
                         option.challengeDesc = CHALLENGE_TEXT[13];
                         option.rewardType = NeowTheStreamerRewardType.FOUR_SPECIAL_CARDS;
                         option.rewardDesc = REWARD_TEXT[16];
                         break;
-                    case 5:
+                    case 4:
                         this.hp_bonus = (int)(AbstractDungeon.player.maxHealth * 0.9F);
                         this.relicReward = new BodyOfCleric();
                         option.challengeType = NeowTheStreamerChallengeType.MAX_HP_LOSS;
                         option.challengeDesc = CHALLENGE_TEXT[14];
                         option.rewardType = NeowTheStreamerRewardType.BODY_OF_CLERIC;
                         option.rewardDesc = REWARD_TEXT[17];
-                        break;*/
-                    case 1:
+                        break;
+                    case 5:
                         this.cardReward = new YoutubesBlessing();
                         option.challengeType = NeowTheStreamerChallengeType.NONE; //youtubes revenge
                         option.challengeDesc = "";
                         option.rewardType = NeowTheStreamerRewardType.YOUTUBES_BLESSING;
                         option.rewardDesc = REWARD_TEXT[18];
                         break;
-                    /*case 7:
+                    case 6:
                         curses = getCurseCards(2);
                         relicReward = new CardVoucher();
                         option.challengeType = NeowTheStreamerChallengeType.TWO_CURSES;
                         option.challengeDesc = CHALLENGE_TEXT[1] + curses.get(0).name + " #rand " + curses.get(1).name;
                         option.rewardType = NeowTheStreamerRewardType.CARD_VOUCHERS;
                         option.rewardDesc = REWARD_TEXT[19];
-                        break;*/
-                    case 2:
+                        break;
+                    case 7:
                         curses = getCurseCards(3);
                         option.challengeType = NeowTheStreamerChallengeType.THREE_CURSES;
                         option.challengeDesc = CHALLENGE_TEXT[1] + curses.get(0).name + ", " + curses.get(1).name + " #rand " + curses.get(2).name;
                         option.rewardType = NeowTheStreamerRewardType.RELIC_REWARDS;
                         option.rewardDesc = REWARD_TEXT[20];
                         break;
-                    case 3:
+                    case 8:
                         if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD) {
                             this.relicReward = new WrathOfTheIronclad();
                             this.cardReward = new DemonForm();
@@ -368,7 +364,7 @@ public class NeowTheStreamerReward extends NeowReward {
                             option.challengeDesc = CHALLENGE_TEXT[16];
                         }
                         break;
-                    case 4:
+                    case 9:
                         if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.THE_SILENT &&
                                 AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD) {
                             this.relicReward = new WrathOfTheSilent();
@@ -382,7 +378,7 @@ public class NeowTheStreamerReward extends NeowReward {
                             option.challengeDesc = CHALLENGE_TEXT[17];
                         }
                         break;
-                    case 5:
+                    case 10:
                         if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.DEFECT &&
                                 AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.THE_SILENT &&
                                 AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD) {
@@ -397,7 +393,7 @@ public class NeowTheStreamerReward extends NeowReward {
                             option.challengeDesc = CHALLENGE_TEXT[18];
                         }
                         break;
-                    case 6:
+                    case 11:
                         if (AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.WATCHER &&
                                 AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.DEFECT &&
                                 AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.THE_SILENT &&
@@ -406,12 +402,13 @@ public class NeowTheStreamerReward extends NeowReward {
                             this.cardReward = new DevaForm();
                             option.challengeType = NeowTheStreamerChallengeType.WRATH_OF_WATCHER;
                             option.challengeDesc = CHALLENGE_TEXT[18];
-                        } /*else { // no upgraded starter relic for modded characters
+                        } else { // no upgraded starter relic for modded characters
+                            this.relicReward = new NeowsPrank();
                             option.challengeType = NeowTheStreamerChallengeType.NEOWS_PRANK;
                             option.challengeDesc = CHALLENGE_TEXT[11];
                             option.rewardType = NeowTheStreamerRewardType.UPGRADE_RELIC;
                             option.rewardDesc = REWARD_TEXT[13];
-                        }*/
+                        }
                         break;
                     default:
                         logger.info("Option in category 2 out of index");
@@ -427,7 +424,7 @@ public class NeowTheStreamerReward extends NeowReward {
 
     @Override
     public void update() {
-        if (this.reward == NeowTheStreamerRewardType.RELIC_REWARDS && this.activated) {
+        /*if (this.reward == NeowTheStreamerRewardType.RELIC_REWARDS && this.activated) {
             if (!AbstractDungeon.isScreenUp) {
                 AbstractDungeon.combatRewardScreen.open();
                 AbstractDungeon.combatRewardScreen.rewards.clear();
@@ -445,7 +442,7 @@ public class NeowTheStreamerReward extends NeowReward {
                 AbstractDungeon.overlayMenu.proceedButton.setLabel(REWARD_TEXT[27]);
                 (AbstractDungeon.getCurrRoom()).rewardPopOutTimer = 0.25F;
             }
-        }
+        }*/
     }
 
     private AbstractRelic.RelicTier returnRandomRelicTier() {
@@ -467,39 +464,30 @@ public class NeowTheStreamerReward extends NeowReward {
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(0).makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 break;
             case TWO_CURSES:
-                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(0).makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(1).makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(0).makeCopy(), Settings.WIDTH / 2.0F * Settings.scale, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(1).makeCopy(), Settings.WIDTH / 2.0F + (2 * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
                 break;
             case THREE_CURSES:
-                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(0).makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(1).makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(2).makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(0).makeCopy(), Settings.WIDTH / 2.0F * Settings.scale, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(1).makeCopy(), Settings.WIDTH / 2.0F + (2 * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(curses.get(2).makeCopy(), Settings.WIDTH / 2.0F + (4 * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
                 break;
             case CULTIST_HEADPIECE:
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
-                break;
-            case DECK_OF_TERRIBLE_THINGS:
-                break;
             case LOW_HP_CHALLENGE:
             case HITLESS_CHALLENGE:
             case POTION_TRASHING_CHALLENGE:
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
-                break;
             case KEY_SMASHING_CHALLENGE:
-                break;
             case GOLD_HOARDING_CHALLENGE:
             case DECK_BUILDING_CHALLENGE:
                 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
                 break;
             case CURSE_CARRYING_CHALLENGE:
+            case DECK_OF_TERRIBLE_THINGS:
+                break;
             case NEOWS_PRANK:
-                break;
             case MARK_OF_NEOOM:
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
-                break;
             case PEAR_WHEEL:
             case CHATS_REVENGE:
-                break;
             case WRATH_OF_IRONCLAD:
             case WRATH_OF_SILENT:
             case WRATH_OF_DEFECT:
@@ -526,9 +514,9 @@ public class NeowTheStreamerReward extends NeowReward {
                 break;
             case THREE_COMMON_CARDS:
             case THREE_COLORLESS_CARDS:
-                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(cardReward.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(cardReward.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(cardReward.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(cardReward.makeCopy(), Settings.WIDTH / 2.0F * Settings.scale, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(cardReward.makeCopy(), Settings.WIDTH / 2.0F + (2 * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
+                AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(cardReward.makeCopy(), Settings.WIDTH / 2.0F + (4 * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
                 break;
             case NEOWS_LAMENT:
                 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new NeowsLament());
@@ -567,6 +555,7 @@ public class NeowTheStreamerReward extends NeowReward {
                 r.instantObtain(AbstractDungeon.player, 0, true);
                 break;
             case MASK_OF_MIDAS:
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
                 break;
             case BUSTED_CROWN:
                 AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new BustedCrown());
@@ -579,12 +568,32 @@ public class NeowTheStreamerReward extends NeowReward {
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(new RitualDagger(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 break;
             case BODY_OF_CLERIC:
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
                 break;
             case YOUTUBES_BLESSING:
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(cardReward.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 break;
             case CARD_VOUCHERS:
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
+                break;
             case RELIC_REWARDS:
+                CardCrawlGame.sound.play("POTION_1");
+                for (int i = 0; i < 5; i++)
+                    AbstractDungeon.combatRewardScreen.rewards.add(new RewardItem(
+                            AbstractDungeon.returnRandomScreenlessRelic(returnRandomRelicTier())));
+                AbstractDungeon.combatRewardScreen.open();
+                AbstractDungeon.combatRewardScreen.positionRewards();
+                AbstractDungeon.overlayMenu.proceedButton.setLabel(REWARD_TEXT[27]);
+                (AbstractDungeon.getCurrRoom()).rewardPopOutTimer = 0.0F;
+                int remove = -1;
+                for (int j = 0; j < AbstractDungeon.combatRewardScreen.rewards.size(); j++) {
+                    if ((AbstractDungeon.combatRewardScreen.rewards.get(j)).type == RewardItem.RewardType.CARD) {
+                        remove = j;
+                        break;
+                    }
+                }
+                if (remove != -1)
+                    AbstractDungeon.combatRewardScreen.rewards.remove(remove);
                 break;
             case BOSS_RELIC:
                 AbstractDungeon.player.loseRelic((AbstractDungeon.player.relics.get(0)).relicId);
@@ -703,14 +712,14 @@ public class NeowTheStreamerReward extends NeowReward {
                                 (upgradableCards.get(i)).upgrade();
                                 cardMetrics.add((upgradableCards.get(i)).cardID);
                                 AbstractDungeon.player.bottledCardUpgradeCheck(upgradableCards.get(i));
-                                AbstractDungeon.effectList.add(new ShowCardBrieflyEffect((upgradableCards.get(i)).makeStatEquivalentCopy(), Settings.WIDTH / 2.0F + (((1 - amount) + (2 * i)) * 190.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
+                                AbstractDungeon.effectList.add(new ShowCardBrieflyEffect((upgradableCards.get(i)).makeStatEquivalentCopy(), Settings.WIDTH / 2.0F + (((1 - amount) + (2 * i)) * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
                             }
                         } else {
                             for (int i = 0; i < amount; i++) {
                                 (upgradableCards.get(i)).upgrade();
                                 cardMetrics.add((upgradableCards.get(i)).cardID);
                                 AbstractDungeon.player.bottledCardUpgradeCheck(upgradableCards.get(i));
-                                AbstractDungeon.effectList.add(new ShowCardBrieflyEffect((upgradableCards.get(i)).makeStatEquivalentCopy(), Settings.WIDTH / 2.0F + (((1 - amount) + (2 * i)) * 190.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
+                                AbstractDungeon.effectList.add(new ShowCardBrieflyEffect((upgradableCards.get(i)).makeStatEquivalentCopy(), Settings.WIDTH / 2.0F + (((1 - amount) + (2 * i)) * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
                             }
                         }
                     }
@@ -718,20 +727,20 @@ public class NeowTheStreamerReward extends NeowReward {
                 case TRANSFORM_CARD:
                     if (amount == 1) {
                         AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                                .getPurgeableCards(), amount, REWARD_TEXT[25] + amount + " Card" + REWARD_TEXT[26], false, true, false, false);
+                                .getPurgeableCards(), amount, REWARD_TEXT[25] + amount + " Card" + REWARD_TEXT[26], false, false, false, false);
                     } else {
                         AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                                .getPurgeableCards(), amount, REWARD_TEXT[25] + amount + " Cards" + REWARD_TEXT[26], false, true, false, false);
+                                .getPurgeableCards(), amount, REWARD_TEXT[25] + amount + " Cards" + REWARD_TEXT[26], false, false, false, false);
                     }
                     break;
                 case REMOVE_CARD:
                     AbstractDungeon.player.decreaseMaxHealth(2*amount);
                     if (amount == 1) {
                         AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                                .getPurgeableCards(), amount, REWARD_TEXT[25] + amount + " Card" + REWARD_TEXT[27], false, false, false, true);
+                                .getPurgeableCards(), amount, REWARD_TEXT[25] + amount + " Card" + REWARD_TEXT[27], false, false, false, false);
                     } else {
                         AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                                .getPurgeableCards(), amount, REWARD_TEXT[25] + amount + " Cards" + REWARD_TEXT[27], false, false, false, true);
+                                .getPurgeableCards(), amount, REWARD_TEXT[25] + amount + " Cards" + REWARD_TEXT[27], false, false, false, false);
                     }
                     break;
                 case DUPLICATE_CARD:

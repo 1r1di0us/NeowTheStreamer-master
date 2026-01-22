@@ -1,6 +1,7 @@
 package neowthestreamer.relics;
 
 import basemod.abstracts.CustomSavable;
+import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
@@ -22,48 +23,36 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
         this.reward = reward;
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
-    }
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();    }
 
     public void onEquip() {
         this.counter = 0;
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
-    }
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();    }
 
     public void setReward(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
         this.reward = reward;
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
-    }
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();    }
 
     @Override
     public String getUpdatedDescription() {
         this.amount = this.counter / this.goal;
         if (this.amount > 5) amount = 5;
-        if (this.reward == null) {
+        if (this.reward == null || getRewardIndex(this.reward) == 0) {
             return this.DESCRIPTIONS[0] + 2 + DESCRIPTIONS[1];
         } else if (this.counter == -1) {
             return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + MSG[getRewardIndex(this.reward)];
         } else {
-            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[3] + amount;
+            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[2] + amount;
         }
     }
-
-    /*public void onEnterRoom(AbstractRoom room) {
-        if (AbstractDungeon.actNum == 2 && !this.usedUp) {
-            this.amount = this.counter / this.goal;
-            if (this.amount > 5) amount = 5;
-            if (this.amount > 0) {
-                this.activated = true;
-            }
-            NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
-            this.reward = NeowTheStreamerReward.NeowTheStreamerRewardType.NONE;
-            this.counter = -1;
-            this.amount = -1;
-            this.usedUp();
-        }
-    }*/
 
     public void onEnterActTwo() {
         if (!usedUp) {
@@ -81,8 +70,9 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
             flash();
             this.counter++;
             this.description = getUpdatedDescription();
-            this.tips.get(0).body = this.description;
-        }
+            this.tips.clear();
+            this.tips.add(new PowerTip(this.name, this.description));
+            initializeTips();        }
     }
 
     @Override
@@ -97,6 +87,7 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
         }
         this.reward = loadRewardFromIndex(rewardIndex);
         this.description = getUpdatedDescription();
-        this.tips.get(0).body = this.description;
-    }
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();    }
 }
