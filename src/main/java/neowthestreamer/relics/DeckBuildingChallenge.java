@@ -12,7 +12,7 @@ import static neowthestreamer.NeowTheStreamer.makeID;
 public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
     public static String ID = makeID("DeckBuildingChallenge");
 
-    public final int goal = 4;
+    public final int goal = 3;
     public int initial;
 
     public DeckBuildingChallenge() {
@@ -21,9 +21,16 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
 
     public DeckBuildingChallenge(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
-        this.counter = 0;
         this.initial = 11;
         this.reward = reward;
+        this.description = getUpdatedDescription();
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
+    }
+
+    public void onEquip() {
+        this.counter = 0;
         this.description = getUpdatedDescription();
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
@@ -41,10 +48,12 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
     @Override
     public String getUpdatedDescription() {
         this.amount = counter;
-        if (this.counter == -1 || getRewardIndex(this.reward) == 0) {
-            return this.DESCRIPTIONS[0] + 4 + DESCRIPTIONS[1] + 11 + DESCRIPTIONS[2];
-        } else {
+        if (this.reward == null || getRewardIndex(this.reward) == 0) {
+            return this.DESCRIPTIONS[0] + 3 + DESCRIPTIONS[1] + 11 + DESCRIPTIONS[2];
+        } else if (this.counter == -1) {
             return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.initial + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)];
+        } else {
+            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.initial + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[3] + counter;
         }
     }
 
@@ -66,6 +75,8 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
             if (this.amount > 0) {
                 NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
             }
+        } else {
+            usedUp();
         }
     }
 

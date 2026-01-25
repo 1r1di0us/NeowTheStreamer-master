@@ -100,6 +100,8 @@ public class LowHPChallenge extends BaseRelic implements ActTwoChallengeInterfac
             if (this.amount > 0) {
                 NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
             }
+        } else {
+            usedUp();
         }
     }
 

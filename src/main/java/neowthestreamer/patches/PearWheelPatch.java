@@ -14,7 +14,7 @@ import neowthestreamer.relics.PearWheel;
 public class PearWheelPatch {
     public static void Postfix(CardRewardScreen __instance, AbstractCard hoveredCard) {
         if (AbstractDungeon.player.hasRelic(PearWheel.ID)) {
-            AbstractDungeon.effectsQueue.add(new FastCardObtainEffect(hoveredCard, hoveredCard.current_x, hoveredCard.current_y));
+            AbstractDungeon.effectsQueue.add(new FastCardObtainEffect(hoveredCard.makeCopy(), hoveredCard.current_x, hoveredCard.current_y));
         }
     }
 }

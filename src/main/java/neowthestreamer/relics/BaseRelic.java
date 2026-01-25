@@ -137,7 +137,7 @@ public abstract class BaseRelic extends CustomRelic {
                 return 2;
             case GOLD:
                 return 3;
-            case GOLD_AND_POTION:
+            case POTION_AND_SLOT:
                 return 4;
             case TRANSFORM_CARD:
                 return 5;
@@ -164,7 +164,7 @@ public abstract class BaseRelic extends CustomRelic {
             case 3:
                 return NeowTheStreamerReward.NeowTheStreamerRewardType.GOLD;
             case 4:
-                return NeowTheStreamerReward.NeowTheStreamerRewardType.GOLD_AND_POTION;
+                return NeowTheStreamerReward.NeowTheStreamerRewardType.POTION_AND_SLOT;
             case 5:
                 return NeowTheStreamerReward.NeowTheStreamerRewardType.TRANSFORM_CARD;
             case 6:

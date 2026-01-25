@@ -18,6 +18,9 @@ public class BodyOfCleric extends BaseRelic {
 
     @Override
     public String getUpdatedDescription() {
+        if (healAmt == 0) {
+            return this.DESCRIPTIONS[0] + 3 + DESCRIPTIONS[1] + actGain + ".";
+        }
         return this.DESCRIPTIONS[0] + healAmt + DESCRIPTIONS[1] + actGain + ".";
     }
 

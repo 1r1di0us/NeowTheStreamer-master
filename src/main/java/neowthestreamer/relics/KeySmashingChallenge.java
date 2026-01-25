@@ -77,6 +77,8 @@ public class KeySmashingChallenge extends BaseRelic implements ActTwoChallengeIn
             this.activated = true;
             if (this.amount > 0) {
                 NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
+            } else {
+                usedUp();
             }
         }
     }

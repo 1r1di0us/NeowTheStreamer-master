@@ -330,13 +330,6 @@ public class NeowTheStreamer implements
             AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(
                     new YoutubesRevenge(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
         }
-        /*if (AbstractDungeon.actNum == 2) {
-            for (AbstractRelic r : AbstractDungeon.player.relics) {
-                if (r instanceof ActTwoChallengeInterface) {
-                    ((ActTwoChallengeInterface) r).onEnterActTwo();
-                }
-            }
-        }*/
     }
 
     public void receivePrePotionUse(AbstractPotion potion) {

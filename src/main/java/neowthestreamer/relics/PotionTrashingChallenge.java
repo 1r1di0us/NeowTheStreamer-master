@@ -25,21 +25,24 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
         this.description = getUpdatedDescription();
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
-        initializeTips();    }
+        initializeTips();
+    }
 
     public void onEquip() {
         this.counter = 0;
         this.description = getUpdatedDescription();
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
-        initializeTips();    }
+        initializeTips();
+    }
 
     public void setReward(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
         this.reward = reward;
         this.description = getUpdatedDescription();
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
-        initializeTips();    }
+        initializeTips();
+    }
 
     @Override
     public String getUpdatedDescription() {
@@ -54,6 +57,17 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
         }
     }
 
+    public void OnPotionDiscard(AbstractPotion potion) {
+        if (!usedUp && this.amount < 5) {
+            flash();
+            this.counter++;
+            this.description = getUpdatedDescription();
+            this.tips.clear();
+            this.tips.add(new PowerTip(this.name, this.description));
+            initializeTips();
+        }
+    }
+
     public void onEnterActTwo() {
         if (!usedUp) {
             this.amount = this.counter / this.goal;
@@ -62,17 +76,9 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
             if (this.amount > 0) {
                 NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
             }
+        } else {
+            usedUp();
         }
-    }
-
-    public void OnPotionDiscard(AbstractPotion potion) {
-        if (!usedUp && this.amount < 5) {
-            flash();
-            this.counter++;
-            this.description = getUpdatedDescription();
-            this.tips.clear();
-            this.tips.add(new PowerTip(this.name, this.description));
-            initializeTips();        }
     }
 
     @Override
@@ -89,5 +95,6 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
         this.description = getUpdatedDescription();
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
-        initializeTips();    }
+        initializeTips();
+    }
 }

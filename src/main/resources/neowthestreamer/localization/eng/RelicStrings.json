@@ -19,8 +19,8 @@
     "DESCRIPTIONS": [
       "For every ",
       " combats where you reach ",
-      " or less HP, add a Reward (max 5). Ends upon entering act 2.",
-      " Rewards Achieved: "
+      " or less HP, add a Reward (max 5). NL Ends after beating the Act 1 Boss.",
+      " NL Rewards Achieved: "
     ]
   },
   "${modID}:HitlessChallenge": {
@@ -28,10 +28,9 @@
     "FLAVOR": "Challenge Accepted!",
     "DESCRIPTIONS": [
       "For every ",
-      " floors climbed past the first ",
-      " without taking unblocked attack damage, add a Reward (max 5). Ends upon entering act 2.",
-      " Rewards Achieved: ",
-      " Failed on floor: "
+      " combats completed without taking unblocked attack damage, add a Reward (max 5). NL Ends after beating the Act 1 Boss.",
+      " NL Rewards Achieved: ",
+      " NL Failed this Combat!"
     ]
   },
   "${modID}:PotionTrashingChallenge": {
@@ -39,25 +38,25 @@
     "FLAVOR": "Challenge Accepted!",
     "DESCRIPTIONS": [
       "For every ",
-      " potions discarded, add a Reward (max 5). Ends upon entering act 2.",
-      " Rewards Achieved: "
+      " potions discarded, add a Reward (max 5). NL Ends after beating the Act 1 Boss.",
+      " NL Rewards Achieved: "
     ]
   },
   "${modID}:KeySmashingChallenge": {
     "NAME": "Key Smashing Challenge",
     "FLAVOR": "Challenge Accepted!",
     "DESCRIPTIONS": [
-      "Whenever you obtain a key, discard it and add a Reward (max 5). You can re-obtain discarded keys. Ends upon entering act 2.",
-      " Rewards Achieved: "
+      "Whenever you obtain a key, discard it and add a Reward (max 5). You can re-obtain discarded keys. NL Ends after beating the Act 1 Boss.",
+      " NL Rewards Achieved: "
     ]
   },
-  "${modID}:GoldHoardingChallenge": {
-    "NAME": "Gold Hoarding Challenge",
+  "${modID}:GoldEatingChallenge": {
+    "NAME": "Gold Eating Challenge",
     "FLAVOR": "Challenge Accepted!",
     "DESCRIPTIONS": [
-      "For every ",
-      " gold more than your initial ",
-      " that you hold, add a Reward (max 5). Spending gold updates rewards. Ends upon entering act 2."
+      "You cannot gain gold. For every ",
+      " gold this eats, add a Reward (max 5). NL Ends after beating the Act 1 Boss.",
+      " NL Rewards Achieved: "
     ]
   },
   "${modID}:DeckBuildingChallenge": {
@@ -66,15 +65,43 @@
     "DESCRIPTIONS": [
       "For every ",
       " card more than your initial ",
-      " in your deck, add a Reward (max 5). Removing cards updates rewards. Ends upon entering act 2."
+      " in your deck, add a Reward (max 5). Removing cards updates rewards. NL Ends after beating the Act 1 Boss.",
+      " NL Rewards Achieved: "
+    ]
+  },
+  "${modID}:CurseCarryingChallenge": {
+    "NAME": "Curse Carrying Challenge",
+    "FLAVOR": "Challenge Accepted!",
+    "DESCRIPTIONS": [
+      "On pickup, obtain a random NtS curse. Every ",
+      " combats entered with this curse in your deck, add a Reward (max 5). NL Ends after beating the Act 1 Boss.",
+      "Obtained ",
+      ". Every ",
+      " NL Rewards Achieved: ",
+      " NL Curse has been removed!"
+    ]
+  },
+  "${modID}:EvilDiceChallenge": {
+    "NAME": "Evil Dice Challenge",
+    "FLAVOR": "Challenge Accepted!",
+    "DESCRIPTIONS": [
+      "At the start of your turn, rolls a random evil thing. Every ",
+      " combats, add a Reward (max 5). Ends after beating the Act 1 Boss.",
+      " NL Rewards Achieved: ",
+      "More Knives!",
+      "The enemies needed a hug...",
+      "You didn't need ",
+      " did you?",
+      "Mmm yummy energy!",
+      "Oops, I broke your kneecaps.",
+      "I got you a cookie!"
     ]
   },
   "${modID}:NeowsPrank": {
-    "NAME": "Neow's Prank",
-    "FLAVOR": "Why didn't fairy in a bottle proc?",
+    "NAME": "Neow's Prank (ograph)",
+    "FLAVOR": "\"Its just a prank, dude!\" -Neow, probably",
     "DESCRIPTIONS": [
-      "The first 3 combats are replaced with a random act 1 boss that gives normal fight rewards.",
-      "This relic has been used up!"
+      "At the start of the next 3 hallway combats, heal 25 hp and replace the encounter with an Act 1 Boss that drops boss rewards (without the chest)."
     ]
   },
   "${modID}:MarkOfTheNeoom": {
@@ -113,12 +140,14 @@
       " max hp. Each act, increase this gain by "
     ]
   },
-  "${modID}:CardVoucher": {
-    "NAME": "Card Voucher",
-    "FLAVOR": "What a DEAL!",
+  "${modID}:NeowingBell": {
+    "NAME": "Neowing Bell",
+    "FLAVOR": "Ning Nong?",
     "DESCRIPTIONS": [
-      "Streamer may use in any non-boss card reward to veto chat’s decision. 3 Uses. Right click to \"use\".",
-      "I can't use that in a boss reward!"
+      "Upon pickup, obtain #b3 relics to go with your #rCurses.",
+      "The Nell Nolls...",
+      "Skip Rewards",
+      "Close"
     ]
   },
   "${modID}:WrathOfTheIronclad": {
@@ -135,7 +164,7 @@
     "NAME": "Wrath of the Silent",
     "FLAVOR": "Feels prickly",
     "DESCRIPTIONS": [
-      "At the start of the next ",
+      "For the next ",
       " combats, ALL enemies gain ",
       " combat, ALL enemies gain ",
       " Thorns. REWARD: Obtain Wraith Form."

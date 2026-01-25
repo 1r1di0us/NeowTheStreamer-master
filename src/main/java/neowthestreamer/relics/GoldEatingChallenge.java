@@ -1,7 +1,6 @@
 package neowthestreamer.relics;
 
 import basemod.abstracts.CustomSavable;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
@@ -9,21 +8,26 @@ import neowthestreamer.interfaces.SetRewardInterface;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
 
-public class GoldHoardingChallenge extends BaseRelic implements ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
-    public static String ID = makeID("GoldHoardingChallenge");
+public class GoldEatingChallenge extends BaseRelic implements ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
+    public static String ID = makeID("GoldEatingChallenge");
 
-    public final int goal = 100;
-    public int initial;
+    public final int goal = 75;
 
-    public GoldHoardingChallenge() {
+    public GoldEatingChallenge() {
         this(NeowTheStreamerReward.NeowTheStreamerRewardType.NONE);
     }
 
-    public GoldHoardingChallenge(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
+    public GoldEatingChallenge(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
-        this.counter = 0;
-        this.initial = 99;
         this.reward = reward;
+        this.description = getUpdatedDescription();
+        this.tips.clear();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
+    }
+
+    public void onEquip() {
+        this.counter = 0;
         this.description = getUpdatedDescription();
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
@@ -40,45 +44,39 @@ public class GoldHoardingChallenge extends BaseRelic implements ActTwoChallengeI
 
     @Override
     public String getUpdatedDescription() {
-        this.amount = counter;
-        if (this.counter == -1 || getRewardIndex(this.reward) == 0) {
-            return this.DESCRIPTIONS[0] + 100 + DESCRIPTIONS[1] + 99 + DESCRIPTIONS[2];
+        this.amount = (counter / goal);
+        if (this.amount > 5) amount = 5;
+        if (this.reward == null || getRewardIndex(this.reward) == 0) {
+            return this.DESCRIPTIONS[0] + 75 + DESCRIPTIONS[1];
+        } else if (this.counter == -1) {
+            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + MSG[getRewardIndex(this.reward)];
         } else {
-            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.initial + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)];
+            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[2] + amount;
         }
     }
 
-    public void onGainGold() {
-        if ((AbstractDungeon.player.gold - initial - (counter*goal)) >= goal) {
-            counter++;
-            this.description = getUpdatedDescription();
-            this.tips.clear();
-            this.tips.add(new PowerTip(this.name, this.description));
-            initializeTips();
-        }
-    }
-
-    public void onSpendGold() {
-        if ((AbstractDungeon.player.gold - initial) < counter*goal && !usedUp) {
-            if (AbstractDungeon.player.gold < initial) {
-                this.counter = 0;
-            } else {
-                this.counter = ((AbstractDungeon.player.gold - initial) / goal);
+    public void onEatGold(int goldAmount) {
+        if (!usedUp) {
+            flash();
+            this.counter += goldAmount;
+            if (this.counter / goal > this.amount && this.amount < 5) {
+                this.description = getUpdatedDescription();
+                this.tips.clear();
+                this.tips.add(new PowerTip(this.name, this.description));
+                initializeTips();
             }
-            this.description = getUpdatedDescription();
-            this.tips.clear();
-            this.tips.add(new PowerTip(this.name, this.description));
-            initializeTips();
         }
     }
 
     public void onEnterActTwo() {
         if (!usedUp) {
-            this.amount = this.counter;
+            this.amount = (counter / goal);
             if (this.amount > 5) amount = 5;
             this.activated = true;
             if (this.amount > 0) {
                 NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
+            } else {
+                usedUp();
             }
         }
     }
