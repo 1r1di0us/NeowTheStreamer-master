@@ -34,6 +34,7 @@ public class ChatsRevenge extends BaseRelic implements CustomSavable<Integer> {
                 AbstractCard newCurse = NeowTheStreamerReward.getCurseCards(1).get(0);
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(newCurse.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 addToTop(new MakeTempCardInDrawPileAction(newCurse.makeCopy(), 1, true, true));
+                return;
             }
         }
     }
