@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import neowthestreamer.NeowTheStreamerReward;
+import neowthestreamer.actions.DisguiseDeezNutsAction;
+import neowthestreamer.cards.DeezNuts;
 import neowthestreamer.cards.First;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
@@ -27,17 +29,21 @@ public class ChatsRevenge extends BaseRelic implements CustomSavable<Integer> {
         return this.DESCRIPTIONS[0];
     }
 
-    public void atBattleStart() {
+    public void atBattleStartPreDraw() {
         for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {
             //if (m.type == AbstractMonster.EnemyType.BOSS && MonsterHelper.getEncounter(AbstractDungeon.bossKey).monsters.get(0).id.equals(AbstractDungeon.getMonsters().monsters.get(0).id) && this.amount == AbstractDungeon.actNum) {
             if (m.type == AbstractMonster.EnemyType.BOSS) {
                 amount++;
-                AbstractCard newCurse = NeowTheStreamerReward.getCurseCards(1).get(0);
+                AbstractCard newCurse = new DeezNuts();//NeowTheStreamerReward.getCurseCards(1).get(0);
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(newCurse.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                AbstractCard CopyCurse = newCurse.makeCopy();
                 if (newCurse instanceof First) {
-                    addToTop(new MakeTempCardInDrawPileAction(newCurse.makeCopy(), 1, false, true));
+                    addToBot(new MakeTempCardInDrawPileAction(CopyCurse, 1, false, true));
                 } else {
-                    addToTop(new MakeTempCardInDrawPileAction(newCurse.makeCopy(), 1, true, true));
+                    addToBot(new MakeTempCardInDrawPileAction(CopyCurse, 1, true, true));
+                }
+                if (newCurse instanceof DeezNuts) {
+                    addToBot(new DisguiseDeezNutsAction());
                 }
                 return;
             }
