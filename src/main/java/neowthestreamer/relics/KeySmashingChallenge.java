@@ -93,6 +93,9 @@ public class KeySmashingChallenge extends BaseRelic implements ActTwoChallengeIn
         if (rewardIndex == null) {
             return;
         }
+        if (counter == -1) {
+            usedUp();
+        }
         this.reward = loadRewardFromIndex(rewardIndex);
         this.description = getUpdatedDescription();
         this.tips.clear();

@@ -179,7 +179,7 @@ public class NeowTheStreamerReward extends NeowReward {
                 }
                 break;
             case 1:
-                int challengeIndex = 4;
+                int challengeIndex = 1; //NeowEvent.rng.random(0,7);
                 switch (challengeIndex) {
                     case 0:
                         relicReward = new LowHPChallenge();
@@ -294,7 +294,7 @@ public class NeowTheStreamerReward extends NeowReward {
                         AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.DEFECT &&
                         AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.THE_SILENT &&
                         AbstractDungeon.player.chosenClass != AbstractPlayer.PlayerClass.IRONCLAD) {
-                    gigaOptionIndex = NeowEvent.rng.random(0,11);
+                    gigaOptionIndex = NeowEvent.rng.random(0,11); // if its modded we include the final option
                 } else {
                     gigaOptionIndex = NeowEvent.rng.random(0,10);
                 }
@@ -447,10 +447,7 @@ public class NeowTheStreamerReward extends NeowReward {
             case GOLD_EATING_CHALLENGE:
             case DECK_BUILDING_CHALLENGE:
             case CURSE_CARRYING_CHALLENGE:
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
-                break;
             case EVIL_DICE_CHALLENGE:
-                break;
             case MARK_OF_NEOOM:
             case PEAR_WHEEL:
             case CHATS_REVENGE:
@@ -458,7 +455,7 @@ public class NeowTheStreamerReward extends NeowReward {
             case WRATH_OF_SILENT:
             case WRATH_OF_DEFECT:
             case WRATH_OF_WATCHER:
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2, this.relicReward);
                 break;
             case MAX_HP_LOSS:
                 AbstractDungeon.player.decreaseMaxHealth(this.hp_bonus);
@@ -472,7 +469,7 @@ public class NeowTheStreamerReward extends NeowReward {
                 break;
             case PREVIEW_SHOP_RELIC:
             case PREVIEW_COMMON_RELIC:
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2, this.relicReward);
                 break;
             case PREVIEW_RARE_CARD:
             case PREVIEW_COLORLESS_RARE:
@@ -485,7 +482,7 @@ public class NeowTheStreamerReward extends NeowReward {
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(cardReward.makeCopy(), Settings.WIDTH / 2.0F + (2 * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
                 break;
             case NEOWS_LAMENT:
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new NeowsLament());
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2, new NeowsLament());
                 break;
             case TWO_FIFTY_GOLD:
                 CardCrawlGame.sound.play("GOLD_JINGLE");
@@ -521,7 +518,7 @@ public class NeowTheStreamerReward extends NeowReward {
                 r.instantObtain(AbstractDungeon.player, 0, true);
                 break;*/
             case BUSTED_CROWN:
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new BustedCrown());
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2, new BustedCrown());
                 AbstractDungeon.bossRelicPool.remove(BustedCrown.ID);
                 break;
             case FOUR_SPECIAL_CARDS:
@@ -534,14 +531,14 @@ public class NeowTheStreamerReward extends NeowReward {
             case MASK_OF_MIDAS:
             case BODY_OF_CLERIC:
             case NEOWING_BELL:
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), this.relicReward);
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2, this.relicReward);
                 break;
             case YOUTUBES_BLESSING:
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(cardReward.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 break;
             case BOSS_RELIC:
                 AbstractDungeon.player.loseRelic((AbstractDungeon.player.relics.get(0)).relicId);
-                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2),
+                AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2,
                         AbstractDungeon.returnRandomRelic(AbstractRelic.RelicTier.BOSS));
                 break;
             default:
@@ -612,7 +609,7 @@ public class NeowTheStreamerReward extends NeowReward {
             switch (reward) {
                 case RANDOM_COMMON_RELIC:
                     for (int i = 0; i < amount; i++) {
-                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2),
+                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain((float) Settings.WIDTH / 2, (float) Settings.HEIGHT / 2,
                                 AbstractDungeon.returnRandomRelic(AbstractRelic.RelicTier.COMMON));
                     }
                     break;

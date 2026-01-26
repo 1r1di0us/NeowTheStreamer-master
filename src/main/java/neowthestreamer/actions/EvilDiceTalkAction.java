@@ -28,8 +28,8 @@ public class EvilDiceTalkAction extends AbstractGameAction {
         this.bubbleDuration = bubbleDuration;
         this.relicX = x;
         this.relicY = y;
-        this.dialogX = relicX - 30.0F * Settings.scale;
-        this.dialogY = relicY + 100F * Settings.scale;
+        this.dialogX = 25.0F * Settings.scale;
+        this.dialogY = -250.0F * Settings.scale;
     }
 
     public EvilDiceTalkAction(String text) {

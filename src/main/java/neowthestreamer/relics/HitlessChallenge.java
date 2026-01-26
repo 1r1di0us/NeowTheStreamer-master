@@ -65,7 +65,7 @@ public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterf
     }
 
     public int onAttacked(DamageInfo info, int damageAmount) {
-        if (info.owner != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0 && !usedUp) {
+        if (info.owner != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT && info.type != DamageInfo.DamageType.HP_LOSS && damageAmount > 0 && !usedUp && !failedCombat) {
             flash();
             stopPulse();
             failedCombat = true;
@@ -78,7 +78,7 @@ public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterf
     }
 
     public void onEnterRoom(AbstractRoom room) {
-        if (room.phase == AbstractRoom.RoomPhase.COMBAT) {
+        if (room.phase == AbstractRoom.RoomPhase.COMBAT && !usedUp) {
             this.failedCombat = false;
             this.pulse = true;
             beginPulse();
@@ -124,6 +124,9 @@ public class HitlessChallenge extends BaseRelic implements ActTwoChallengeInterf
     public void onLoad(Integer rewardIndex) {
         if (rewardIndex == null) {
             return;
+        }
+        if (counter == -1) {
+            usedUp();
         }
         this.reward = loadRewardFromIndex(rewardIndex);
         this.description = getUpdatedDescription();

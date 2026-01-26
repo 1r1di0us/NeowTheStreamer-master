@@ -28,7 +28,8 @@ public class ChatsRevenge extends BaseRelic implements CustomSavable<Integer> {
 
     public void atBattleStart() {
         for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {
-            if (m.type == AbstractMonster.EnemyType.BOSS && MonsterHelper.getEncounter(AbstractDungeon.bossKey).monsters.get(0).id.equals(AbstractDungeon.getMonsters().monsters.get(0).id) && this.amount == AbstractDungeon.actNum) {
+            //if (m.type == AbstractMonster.EnemyType.BOSS && MonsterHelper.getEncounter(AbstractDungeon.bossKey).monsters.get(0).id.equals(AbstractDungeon.getMonsters().monsters.get(0).id) && this.amount == AbstractDungeon.actNum) {
+            if (m.type == AbstractMonster.EnemyType.BOSS) {
                 amount++;
                 AbstractCard newCurse = NeowTheStreamerReward.getCurseCards(1).get(0);
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(newCurse.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));

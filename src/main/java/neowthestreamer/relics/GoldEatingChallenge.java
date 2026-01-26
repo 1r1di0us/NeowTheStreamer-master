@@ -91,10 +91,13 @@ public class GoldEatingChallenge extends BaseRelic implements ActTwoChallengeInt
         if (rewardIndex == null) {
             return;
         }
+        if (counter == -1) {
+            usedUp();
+        }
         this.reward = loadRewardFromIndex(rewardIndex);
         this.description = getUpdatedDescription();
         this.tips.clear();
-            this.tips.add(new PowerTip(this.name, this.description));
-            initializeTips();
+        this.tips.add(new PowerTip(this.name, this.description));
+        initializeTips();
     }
 }

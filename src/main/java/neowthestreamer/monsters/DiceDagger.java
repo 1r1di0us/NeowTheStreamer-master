@@ -6,12 +6,9 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ChangeStateAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.LoseHPAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Wound;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -26,23 +23,14 @@ public class DiceDagger extends AbstractMonster {
 
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Dagger");
 
-    public static final String NAME = monsterStrings.NAME;
+    public static final String NAME = "Dice Dagger";
 
-    public static final String[] MOVES = monsterStrings.MOVES;
-
-    public static final String[] DIALOG = monsterStrings.DIALOG;
-
-    private static final int HP_MIN = 20;
-
-    private static final int HP_MAX = 25;
-
-    private static final int SACRIFICE_DMG = 8;
-
-    private static final byte EXPLODE = 1;
+    private static int SACRIFICE_DMG;
 
     public DiceDagger(int hp, int dmg, float x, float y) {
         super(NAME, ID, hp, 0.0F, -50.0F, 140.0F, 130.0F, null, x, y);
         initializeAnimation();
+        SACRIFICE_DMG = dmg;
         this.damage.add(new DamageInfo((AbstractCreature)this, dmg));
     }
 
@@ -79,7 +67,7 @@ public class DiceDagger extends AbstractMonster {
     }
 
     protected void getMove(int num) {
-        setMove((byte)1, AbstractMonster.Intent.ATTACK_DEBUFF, SACRIFICE_DMG);
+        setMove((byte)1, AbstractMonster.Intent.ATTACK, SACRIFICE_DMG);
     }
 
     public void changeState(String key) {

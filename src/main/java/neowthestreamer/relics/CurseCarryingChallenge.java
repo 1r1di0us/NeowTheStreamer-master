@@ -145,7 +145,9 @@ public class CurseCarryingChallenge extends BaseRelic implements ActTwoChallenge
         if (rewardIndex == null) {
             return;
         }
-        findCurse();
+        if (counter == -1) {
+            usedUp();
+        }
         this.reward = loadRewardFromIndex(rewardIndex);
         this.description = getUpdatedDescription();
         this.tips.clear();

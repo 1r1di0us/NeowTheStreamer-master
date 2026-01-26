@@ -89,6 +89,8 @@ public class NeowTheStreamer implements
 
         //guarantee big whale bonus
         Settings.isTestingNeow = true;
+
+        //IN CASE ANYONE WANTS TO KNOW HOW I CHANGED THE NEOW TEXT, YOU JUST MAKE A CHARACTERSTRINGS ENTRY WITH THE SAME KEY VALUE "Neow Event" AND SOME MOD REPLACES IT FOR YOU
     }
 
     /*----------Localization----------*/

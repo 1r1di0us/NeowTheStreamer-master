@@ -123,6 +123,7 @@ public abstract class BaseRelic extends CustomRelic {
     public void usedUp() {
         this.grayscale = true;
         this.usedUp = true;
+        this.counter = -1;
         this.description = MSG[0];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));

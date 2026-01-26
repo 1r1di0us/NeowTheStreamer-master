@@ -5,7 +5,7 @@
       " REWARD: Obtain a random common relic.",
       " REWARD: Gain 7 Max HP.",
       " REWARD: Gain 100 Gold.",
-      " REWARD: Gain 75 Gold and a potion.",
+      " REWARD: Gain 1 potion slot with a random potion.",
       " REWARD: Transform 1 card.",
       " REWARD: Upgrade 1 random card.",
       " REWARD: Remove 1 card and lose 2 Max HP.",
@@ -64,7 +64,7 @@
     "FLAVOR": "Challenge Accepted!",
     "DESCRIPTIONS": [
       "For every ",
-      " card more than your initial ",
+      " cards more than your initial ",
       " in your deck, add a Reward (max 5). Removing cards updates rewards. NL Ends after beating the Act 1 Boss.",
       " NL Rewards Achieved: "
     ]
@@ -88,13 +88,20 @@
       "At the start of your turn, rolls a random evil thing. Every ",
       " combats, add a Reward (max 5). Ends after beating the Act 1 Boss.",
       " NL Rewards Achieved: ",
+      " NL Rolled a ",
       "More Knives!",
-      "The enemies needed a hug...",
-      "You didn't need ",
+      "The enemies need a hug...",
+      "You didn't need cards, did you?",
       " did you?",
       "Mmm yummy energy!",
       "Oops, I broke your kneecaps.",
-      "I got you a cookie!"
+      "I got you a cookie!",
+      ". Spawns Dice Dagger!",
+      ". Block for all!",
+      ". Free Discard!",
+      ". Energy Down!",
+      ". Triple Debuff!",
+      ". +5 hp!"
     ]
   },
   "${modID}:NeowsPrank": {
@@ -129,7 +136,7 @@
     "NAME": "Chat's Revenge",
     "FLAVOR": "The source of all evil! Just gotta find mount doom...",
     "DESCRIPTIONS": [
-      "Whenever you reach a main act boss, add a random NtS curse to your deck (and draw pile)."
+      "At the start of Boss combats, add a random NtS curse to your deck (and draw pile)."
     ]
   },
   "${modID}:BodyOfCleric": {

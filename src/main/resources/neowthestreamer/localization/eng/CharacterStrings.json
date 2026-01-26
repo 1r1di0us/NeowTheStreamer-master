@@ -11,7 +11,7 @@
       " #gGold ]",
       " #gGain #ga #grandom #gcommon #gRelic ]",
       " #gMax #gHP #g+",
-      " #gPotion #gSlot #gwith #ga #grandom #gPotion ]",
+      " #gpotion #gslot #gwith #ga #grandom #gpotion ]",
       " #gTransform #g1 #gCard ]",
       " #gUpgrade #g1 #grandom #gCard ]",
       " #gRemove #g1 #gCard #gand #rLose #r2 #rMax #rHP ]",
@@ -53,21 +53,21 @@
       "[ #rObtain #rWrath #rof #rthe #rWatcher #gREWARD: #gObtain #gDeva #gForm ]"
     ]
   },
-  "${modID}:NeowEventPatch": {
+  "Neow Event": {
     "NAMES": [
       "Neow"
     ],
     "TEXT": [
       "~Greetings...~ ~Streamer...~ NL ~I..~ ~am~ ~Neow...~",
-      "~Hello...~ NL ~Again..~ NL ~Chat..~",
-      "~Greetings...~ ~youtube...~",
-      "~Another~ NL ~monday...?~",
-      "~Git~ ~Good...~ NL ~to~ ~receive~ ~more..~ ~blessings...~",
+      "~Hello...~ NL ~again..~ NL ~Chat..~",
+      "~Greetings...~ ~Youtube...~",
+      "~Another~ NL ~Monday...?~",
+      "~Git~ ~good...~ NL ~to~ ~receive~ ~more..~ ~blessings...~",
       "~Another~ ~copy...~ NL ~of~ ~StS~ ~2...~",
-      "~I~ ~brought~ ~you~ ~snacks...~",
-      "~Choose...~",
-      "~Granted...~",
-      "~Risk...~ NL ~..reward....~",
+      "~I~ ~see~ ~you~ ~are~ ~back...~",
+      "~Vote...now...~",
+      "~Poggies...~ NL ~granted...~",
+      "~Giga~ ~risk...~ NL ~..giga~ ~reward....~",
       "~Time~ ~for~ NL ~ANOTHER~ ~ROUND...~",
       "Rewards",
       "~Let's~ ~keep~ ~going...~",

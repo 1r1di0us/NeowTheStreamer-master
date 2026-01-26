@@ -47,19 +47,20 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
 
     @Override
     public String getUpdatedDescription() {
-        this.amount = counter;
+        this.amount = this.counter / this.goal;
+        if (this.amount > 5) amount = 5;
         if (this.reward == null || getRewardIndex(this.reward) == 0) {
             return this.DESCRIPTIONS[0] + 3 + DESCRIPTIONS[1] + 11 + DESCRIPTIONS[2];
         } else if (this.counter == -1) {
             return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.initial + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)];
         } else {
-            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.initial + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[3] + counter;
+            return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + this.initial + DESCRIPTIONS[2] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[3] + amount;
         }
     }
 
     public void onMasterDeckChange() {
-        if ((AbstractDungeon.player.masterDeck.size() - initial) / goal != counter && !usedUp) {
-            counter = (AbstractDungeon.player.masterDeck.size() - initial) / goal;
+        if ((AbstractDungeon.player.masterDeck.size() - initial) != counter && !usedUp) {
+            counter = (AbstractDungeon.player.masterDeck.size() - initial);
             this.description = getUpdatedDescription();
             this.tips.clear();
             this.tips.add(new PowerTip(this.name, this.description));
@@ -69,14 +70,14 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
 
     public void onEnterActTwo() {
         if (!usedUp) {
-            this.amount = this.counter;
+            this.amount = this.counter / this.goal;
             if (this.amount > 5) amount = 5;
             this.activated = true;
             if (this.amount > 0) {
                 NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
+            } else {
+                usedUp();
             }
-        } else {
-            usedUp();
         }
     }
 
@@ -89,6 +90,9 @@ public class DeckBuildingChallenge extends BaseRelic implements ActTwoChallengeI
     public void onLoad(Integer rewardIndex) {
         if (rewardIndex == null) {
             return;
+        }
+        if (counter == -1) {
+            usedUp();
         }
         this.reward = loadRewardFromIndex(rewardIndex);
         this.description = getUpdatedDescription();

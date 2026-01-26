@@ -75,9 +75,9 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
             this.activated = true;
             if (this.amount > 0) {
                 NeowTheStreamerReward.activateChallengeRewards(this.reward, this.amount);
+            } else {
+                usedUp();
             }
-        } else {
-            usedUp();
         }
     }
 
@@ -90,6 +90,9 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
     public void onLoad(Integer rewardIndex) {
         if (rewardIndex == null) {
             return;
+        }
+        if (counter == -1) {
+            usedUp();
         }
         this.reward = loadRewardFromIndex(rewardIndex);
         this.description = getUpdatedDescription();
