@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import neowthestreamer.NeowTheStreamerReward;
+import neowthestreamer.cards.First;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
 
@@ -33,7 +34,11 @@ public class ChatsRevenge extends BaseRelic implements CustomSavable<Integer> {
                 amount++;
                 AbstractCard newCurse = NeowTheStreamerReward.getCurseCards(1).get(0);
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(newCurse.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                addToTop(new MakeTempCardInDrawPileAction(newCurse.makeCopy(), 1, true, true));
+                if (newCurse instanceof First) {
+                    addToTop(new MakeTempCardInDrawPileAction(newCurse.makeCopy(), 1, false, true));
+                } else {
+                    addToTop(new MakeTempCardInDrawPileAction(newCurse.makeCopy(), 1, true, true));
+                }
                 return;
             }
         }
