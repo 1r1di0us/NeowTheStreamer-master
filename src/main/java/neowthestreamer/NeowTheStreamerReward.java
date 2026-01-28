@@ -179,7 +179,7 @@ public class NeowTheStreamerReward extends NeowReward {
                 }
                 break;
             case 1:
-                int challengeIndex = 1; //NeowEvent.rng.random(0,7);
+                int challengeIndex = NeowEvent.rng.random(0,7);
                 switch (challengeIndex) {
                     case 0:
                         relicReward = new LowHPChallenge();
