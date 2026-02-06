@@ -2,11 +2,15 @@ package neowthestreamer;
 
 import basemod.AutoAdd;
 import basemod.BaseMod;
+import basemod.ModLabeledToggleButton;
+import basemod.ModPanel;
 import basemod.helpers.RelicType;
 import basemod.interfaces.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpireConfig;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -60,6 +64,12 @@ public class NeowTheStreamer implements
     private static final String resourcesFolder = checkResourcesPath();
     public static final Logger logger = LogManager.getLogger(modID); //Used to output to the console.
 
+    public static Properties neowTheStreamerSettings = new Properties();
+    public static final String ADD_TIME_SETTING = "additional time to pick neow reward";
+    public static Boolean addTimePlaceholder = false;
+    public static ModLabeledToggleButton addTime;
+    public static final float ADD_TIME_AMT = 15.0F;
+
     //This is used to prefix the IDs of various objects like cards and relics,
     //to avoid conflicts between different mods using the same name for things.
     public static String makeID(String id) {
@@ -74,10 +84,46 @@ public class NeowTheStreamer implements
     public NeowTheStreamer() {
         BaseMod.subscribe(this); //This will make BaseMod trigger all the subscribers at their appropriate times.
         logger.info(modID + " subscribed to BaseMod.");
+
+        neowTheStreamerSettings.setProperty(ADD_TIME_SETTING, "FALSE");
+        try {
+            SpireConfig config = new SpireConfig(modID, makeID("Config"), neowTheStreamerSettings); // ...right here
+            // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
+            config.load(); // Load the setting and set the boolean to equal it
+            addTimePlaceholder = config.getBool(ADD_TIME_SETTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void receivePostInitialize() {
+        //guarantee big whale bonus
+        Settings.isTestingNeow = true;
+        //IN CASE ANYONE WANTS TO KNOW HOW I CHANGED THE NEOW TEXT, YOU JUST MAKE A CHARACTERSTRINGS ENTRY WITH THE SAME KEY VALUE "Neow Event" AND SOME MOD REPLACES IT FOR YOU
+
+        ModPanel settingsPanel = new ModPanel();
+
+        addTime = new ModLabeledToggleButton("Add Time To Neow Vote",
+                350.0f, 750.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                addTimePlaceholder, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    addTimePlaceholder = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig(modID, makeID("Config"), neowTheStreamerSettings);
+                        config.setBool(ADD_TIME_SETTING, addTimePlaceholder);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+        settingsPanel.addUIElement(addTime); // Add the button to the settings panel. Button is a go.
+
         //This loads the image used as an icon in the in-game mods menu.
         Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
         //Set up the mod information displayed in the in-game mods menu.
@@ -85,12 +131,7 @@ public class NeowTheStreamer implements
 
         //If you want to set up a config panel, that will be done here.
         //You can find information about this on the BaseMod wiki page "Mod Config and Panel".
-        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, null);
-
-        //guarantee big whale bonus
-        Settings.isTestingNeow = true;
-
-        //IN CASE ANYONE WANTS TO KNOW HOW I CHANGED THE NEOW TEXT, YOU JUST MAKE A CHARACTERSTRINGS ENTRY WITH THE SAME KEY VALUE "Neow Event" AND SOME MOD REPLACES IT FOR YOU
+        BaseMod.registerModBadge(badgeTexture, info.Name, GeneralUtils.arrToString(info.Authors), info.Description, settingsPanel);
     }
 
     /*----------Localization----------*/

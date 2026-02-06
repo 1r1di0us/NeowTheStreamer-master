@@ -6,9 +6,6 @@ import com.megacrit.cardcrawl.cards.green.WraithForm;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.IntangiblePlayerPower;
-import com.megacrit.cardcrawl.powers.IntangiblePower;
 import com.megacrit.cardcrawl.powers.ThornsPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
@@ -51,14 +48,14 @@ public class WrathOfTheSilent extends BaseRelic {
         }
     }
 
-    public void onSpawnMonster(AbstractMonster monster) {
+    /*public void onSpawnMonster(AbstractMonster monster) {
         flash();
         //DOESN'T WORK HALF THE TIME?!?!
         addToBot(new RelicAboveCreatureAction(monster, this));
         //monster.addPower(new ThornsPower(monster, amount));
         addToBot(new ApplyPowerAction(monster, AbstractDungeon.player, new ThornsPower(monster, amount)));
         //AbstractDungeon.onModifyPower();
-    }
+    }*/
 
     public void onVictory() {
         if (this.counter == -1 && !this.usedUp) {

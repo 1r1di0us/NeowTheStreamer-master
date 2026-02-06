@@ -162,16 +162,16 @@
     "FLAVOR": "This is what selling your soul to a demon feels like, I guess",
     "DESCRIPTIONS": [
       "For the next ",
-      " combats, whenever you play a card, take ",
-      " combat, whenever you play a card, take ",
-      " damage. REWARD: Obtain Demon Form."
+      " combats, whenever you play a card, everyone loses ",
+      " combat, whenever you play a card, everyone loses ",
+      " HP. REWARD: Obtain Demon Form."
     ]
   },
   "${modID}:WrathOfTheSilent": {
     "NAME": "Wrath of the Silent",
     "FLAVOR": "Feels prickly",
     "DESCRIPTIONS": [
-      "For the next ",
+      "At the start of the next ",
       " combats, ALL enemies gain ",
       " combat, ALL enemies gain ",
       " Thorns. REWARD: Obtain Wraith Form."
@@ -182,8 +182,8 @@
     "FLAVOR": "It takes a lot of energy to be an automaton.",
     "DESCRIPTIONS": [
       "For the next ",
-      " combats, Lose ",
-      " combat, Lose ",
+      " combats, lose ",
+      " combat, lose ",
       " Energy at the start of your turn. REWARD: Obtain Echo Form."
     ]
   },
@@ -192,8 +192,8 @@
     "FLAVOR": "Streamer, I remember your blasphemies.",
     "DESCRIPTIONS": [
       "For the next ",
-      " combats, Die on turn ",
-      " combat, Die on turn ",
+      " combats, die on turn ",
+      " combat, die on turn ",
       ". REWARD: Obtain Deva Form."
     ]
   }

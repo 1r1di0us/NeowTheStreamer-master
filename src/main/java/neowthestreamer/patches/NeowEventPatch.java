@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.neow.NeowEvent;
 import com.megacrit.cardcrawl.neow.NeowReward;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import de.robojumper.ststwitch.TwitchConnection;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import neowthestreamer.NeowTheStreamerReward;
@@ -82,7 +83,9 @@ public class NeowEventPatch {
                 localvars = {}
         )
         public static void Insert(NeowEvent __instance, int buttonPressed) {
-            if (!Loader.isModLoaded("versus")) {
+            if (!Loader.isModLoaded("versus") ||
+                    (AbstractDungeon.topPanel.twitch.isPresent() &&
+                            ReflectionHacks.privateMethod(TwitchConnection.class, "getConnectionStatus").invoke(AbstractDungeon.topPanel.twitch.get().connection) != TwitchConnection.ConnectionStatus.CONNECTED)) {
                 NeowEventPatch.chooseCards((NeowEvent) AbstractDungeon.getCurrRoom().event);
             }
         }

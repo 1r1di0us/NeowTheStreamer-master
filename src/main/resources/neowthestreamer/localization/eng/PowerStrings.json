@@ -8,9 +8,16 @@
   "${modID}:WrathOfTheWatcherPower": {
     "NAME": "Impending Doom",
     "DESCRIPTIONS": [
-      "In ",
+      "In #b",
       " turns, Die.",
       " turn, Die."
+    ]
+  },
+  "${modID}:WrathOfTheIroncladPower": {
+    "NAME": "Pain",
+    "DESCRIPTIONS": [
+      "Whenever you play a card, everyone loses #b",
+      " HP."
     ]
   }
 }

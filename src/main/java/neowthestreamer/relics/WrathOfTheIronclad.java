@@ -7,13 +7,14 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.BeatOfDeathPower;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
+import neowthestreamer.powers.WrathOfTheIroncladPower;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
 
 public class WrathOfTheIronclad extends BaseRelic {
     public static String ID = makeID("WrathOfTheIronclad");
 
-    public static final int amount = 2;
+    public static final int amount = 1;
 
     public WrathOfTheIronclad() {
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
@@ -23,7 +24,7 @@ public class WrathOfTheIronclad extends BaseRelic {
     @Override
     public String getUpdatedDescription() {
         if (this.counter == -1) {
-            return this.DESCRIPTIONS[0] + 6 + this.DESCRIPTIONS[1] + 2 + this.DESCRIPTIONS[3];
+            return this.DESCRIPTIONS[0] + 6 + this.DESCRIPTIONS[1] + 1 + this.DESCRIPTIONS[3];
         } else if (this.counter == 1) {
             return this.DESCRIPTIONS[0] + this.counter + this.DESCRIPTIONS[2] + amount + this.DESCRIPTIONS[3];
         } else {
@@ -35,7 +36,7 @@ public class WrathOfTheIronclad extends BaseRelic {
         if (this.counter != -1) {
             flash();
             addToBot(new RelicAboveCreatureAction(AbstractDungeon.player, this));
-            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BeatOfDeathPower(AbstractDungeon.player, amount)));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new WrathOfTheIroncladPower(AbstractDungeon.player, amount)));
             this.counter--;
             if (this.counter == 0) {
                 this.counter = -1;
