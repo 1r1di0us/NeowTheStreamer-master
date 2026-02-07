@@ -66,8 +66,11 @@ public class NeowTheStreamer implements
 
     public static Properties neowTheStreamerSettings = new Properties();
     public static final String ADD_TIME_SETTING = "additional time to pick neow reward";
+    public static final String SEALED_DECK_SETTING = "pick 10 cards out of 30 to start the run with";
     public static Boolean addTimePlaceholder = false;
+    public static Boolean sealedDeckPlaceholder = true;
     public static ModLabeledToggleButton addTime;
+    public static ModLabeledToggleButton sealedDeck;
     public static final float ADD_TIME_AMT = 15.0F;
 
     //This is used to prefix the IDs of various objects like cards and relics,
@@ -85,12 +88,14 @@ public class NeowTheStreamer implements
         BaseMod.subscribe(this); //This will make BaseMod trigger all the subscribers at their appropriate times.
         logger.info(modID + " subscribed to BaseMod.");
 
-        neowTheStreamerSettings.setProperty(ADD_TIME_SETTING, "FALSE");
+        neowTheStreamerSettings.setProperty(ADD_TIME_SETTING, "FALSE"); // This is the default setting. It's actually set...
+        neowTheStreamerSettings.setProperty(SEALED_DECK_SETTING, "TRUE");
         try {
             SpireConfig config = new SpireConfig(modID, makeID("Config"), neowTheStreamerSettings); // ...right here
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
             config.load(); // Load the setting and set the boolean to equal it
             addTimePlaceholder = config.getBool(ADD_TIME_SETTING);
+            sealedDeckPlaceholder = config.getBool(SEALED_DECK_SETTING);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -123,6 +128,26 @@ public class NeowTheStreamer implements
                 });
 
         settingsPanel.addUIElement(addTime); // Add the button to the settings panel. Button is a go.
+
+        sealedDeck = new ModLabeledToggleButton("Start run with a Sealed Deck",
+                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
+                sealedDeckPlaceholder, // Boolean it uses
+                settingsPanel, // The mod panel in which this button will be in
+                (label) -> {}, // thing??????? idk
+                (button) -> { // The actual button:
+
+                    sealedDeckPlaceholder = button.enabled; // The boolean true/false will be whether the button is enabled or not
+                    try {
+                        // And based on that boolean, set the settings and save them
+                        SpireConfig config = new SpireConfig(modID, makeID("Config"), neowTheStreamerSettings);
+                        config.setBool(SEALED_DECK_SETTING, sealedDeckPlaceholder);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+
+        settingsPanel.addUIElement(sealedDeck); // Add the button to the settings panel. Button is a go.
 
         //This loads the image used as an icon in the in-game mods menu.
         Texture badgeTexture = TextureLoader.getTexture(imagePath("badge.png"));
