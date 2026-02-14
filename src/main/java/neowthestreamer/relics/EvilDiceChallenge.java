@@ -1,6 +1,7 @@
 package neowthestreamer.relics;
 
 import basemod.abstracts.CustomSavable;
+import com.evacipated.cardcrawl.mod.stslib.actions.tempHp.AddTemporaryHPAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -38,6 +39,7 @@ public class EvilDiceChallenge extends BaseRelic implements ActTwoChallengeInter
     public static final float[] POSX = new float[] { 325.0F };
     public static final float[] POSY = new float[] { 215.0F };
     private AbstractMonster dagger;
+    private boolean healedThisCombat;
 
     private int roll = 0;
     private boolean firstTurn = false;
@@ -83,6 +85,9 @@ public class EvilDiceChallenge extends BaseRelic implements ActTwoChallengeInter
             return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[2] + amount;
         } else {
             String rollDesc = DESCRIPTIONS[10+roll];
+            if (healedThisCombat && roll == 6) {
+                rollDesc = DESCRIPTIONS[17];
+            }
             return this.DESCRIPTIONS[0] + this.goal + DESCRIPTIONS[1] + MSG[getRewardIndex(this.reward)] + DESCRIPTIONS[2] + amount + DESCRIPTIONS[3] + roll + rollDesc;
         }
     }
@@ -90,6 +95,7 @@ public class EvilDiceChallenge extends BaseRelic implements ActTwoChallengeInter
     public void atBattleStart() {
         if (!usedUp && this.amount < 5) {
             firstTurn = true;
+            healedThisCombat = false;
             flash();
             roll = AbstractDungeon.miscRng.random(1, 6);
             this.counter++;
@@ -153,7 +159,12 @@ public class EvilDiceChallenge extends BaseRelic implements ActTwoChallengeInter
                     break;
                 case 6:
                     addToBot(new EvilDiceTalkAction(DESCRIPTIONS[10], 2.0F, 2.0F, this.hb.cX, this.hb.cY));
-                    addToBot(new HealAction(p, p, HEAL_AMT));
+                    if (!healedThisCombat) {
+                        healedThisCombat = true;
+                        addToBot(new HealAction(p, p, HEAL_AMT));
+                    } else {
+                        addToBot(new AddTemporaryHPAction(p, p, HEAL_AMT));
+                    }
                     break;
             }
         }

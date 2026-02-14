@@ -101,7 +101,8 @@
       ". Free Discard!",
       ". Energy Down!",
       ". Triple Debuff!",
-      ". +5 hp!"
+      ". +5 hp!",
+      ". +5 Temp hp!"
     ]
   },
   "${modID}:NeowsPrank": {
