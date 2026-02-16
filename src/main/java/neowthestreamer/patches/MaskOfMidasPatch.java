@@ -24,7 +24,11 @@ public class MaskOfMidasPatch {
             if (!AbstractDungeon.gridSelectScreen.selectedCards.isEmpty() && AbstractDungeon.player.hasRelic(MaskOfMidas.ID)) {
                 ShopScreen.purgeCard();
                 for (AbstractCard card : AbstractDungeon.gridSelectScreen.selectedCards) {
-                    AbstractDungeon.topLevelEffects.add(new FastCardObtainEffect(card.makeCopy(), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
+                    AbstractCard newCard = card.makeStatEquivalentCopy();
+                    newCard.inBottleFlame = false;
+                    newCard.inBottleLightning = false;
+                    newCard.inBottleTornado = false;
+                    AbstractDungeon.topLevelEffects.add(new FastCardObtainEffect(newCard, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 }
                 AbstractDungeon.gridSelectScreen.selectedCards.clear();
                 AbstractDungeon.shopScreen.purgeAvailable = false;
