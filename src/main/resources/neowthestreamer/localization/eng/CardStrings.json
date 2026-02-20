@@ -9,7 +9,7 @@
   },
   "${modID}:DayZeroAsking": {
     "NAME": "Day 0 Asking",
-    "DESCRIPTION": "Die. NL Remove this card from your deck. NL Duplicates every !M! days.",
+    "DESCRIPTION": "Die. NL Remove this card from your deck. NL Duplicates every !M! days/draws.",
     "EXTENDED_DESCRIPTION": [
       "Day ",
       " Asking"
@@ -25,7 +25,7 @@
   },
   "${modID}:First": {
     "NAME": "First!",
-    "DESCRIPTION": "Innate. NL Unplayable. Ethereal. NL At the end of your turn place a *Second! on top of your draw pile."
+    "DESCRIPTION": "Innate. NL Unplayable. NL At the end of your turn, put a *Second! on top of your draw pile."
   },
   "${modID}:Gottem": {
     "NAME": "Gottem",
@@ -49,7 +49,7 @@
   },
   "${modID}:Second": {
     "NAME": "Second!",
-    "DESCRIPTION": "Unplayable. NL Ethereal. NL At the end of your turn place a *Third! on top of your draw pile."
+    "DESCRIPTION": "Unplayable. NL Ethereal. NL At the end of your turn, put a *Third! on top of your draw pile."
   },
   "${modID}:SoloSpam": {
     "NAME": "Solo Spam",
@@ -69,6 +69,6 @@
   },
   "${modID}:YoutubesRevenge": {
     "NAME": "Youtube's Revenge",
-    "DESCRIPTION": "Innate. Unremovable. NL Unplayable. Ethereal. NL When drawn, ALL enemies gain !M! Strength."
+    "DESCRIPTION": "Innate. Unremovable. NL Unplayable. NL When drawn, ALL enemies gain !M! Strength."
   }
 }

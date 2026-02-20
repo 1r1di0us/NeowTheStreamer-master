@@ -2,24 +2,22 @@ package neowthestreamer.relics;
 
 import basemod.abstracts.CustomSavable;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import neowthestreamer.NeowTheStreamerReward;
 import neowthestreamer.interfaces.ActTwoChallengeInterface;
-import neowthestreamer.interfaces.OnPotionDiscardInterface;
 import neowthestreamer.interfaces.SetRewardInterface;
 
 import static neowthestreamer.NeowTheStreamer.makeID;
 
-public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscardInterface, ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
-    public static String ID = makeID("PotionTrashingChallenge");
+public class PotionDumpingChallenge extends BaseRelic implements ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
+    public static String ID = makeID("PotionDumpingChallenge");
 
     public final int goal = 2;
 
-    public PotionTrashingChallenge() {
+    public PotionDumpingChallenge() {
         this(NeowTheStreamerReward.NeowTheStreamerRewardType.NONE);
     }
 
-    public PotionTrashingChallenge(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
+    public PotionDumpingChallenge(NeowTheStreamerReward.NeowTheStreamerRewardType reward) {
         super(ID, RelicTier.SPECIAL, LandingSound.HEAVY);
         this.reward = reward;
         this.description = getUpdatedDescription();
@@ -57,8 +55,8 @@ public class PotionTrashingChallenge extends BaseRelic implements OnPotionDiscar
         }
     }
 
-    public void OnPotionDiscard(AbstractPotion potion) {
-        if (!usedUp && this.amount < 5) {
+    public void onPotionRemove() {
+        if (!usedUp) {
             flash();
             this.counter++;
             this.description = getUpdatedDescription();

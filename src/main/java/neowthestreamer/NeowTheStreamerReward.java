@@ -70,7 +70,7 @@ public class NeowTheStreamerReward extends NeowReward {
     }
 
     public enum NeowTheStreamerChallengeType {
-        NONE, ONE_CURSE, CULTIST_HEADPIECE, EVIL_DICE_CHALLENGE, LOW_HP_CHALLENGE, HITLESS_CHALLENGE, POTION_TRASHING_CHALLENGE, KEY_SMASHING_CHALLENGE, GOLD_EATING_CHALLENGE, DECK_BUILDING_CHALLENGE, CURSE_CARRYING_CHALLENGE, MARK_OF_NEOOM, PEAR_WHEEL, CHATS_REVENGE, MAX_HP_LOSS, THREE_CURSES, WRATH_OF_IRONCLAD, WRATH_OF_SILENT, WRATH_OF_DEFECT, WRATH_OF_WATCHER
+        NONE, ONE_CURSE, CULTIST_HEADPIECE, EVIL_DICE_CHALLENGE, LOW_HP_CHALLENGE, HITLESS_CHALLENGE, POTION_DUMPING_CHALLENGE, KEY_SMASHING_CHALLENGE, GOLD_EATING_CHALLENGE, CURSED_REMOVAL_CHALLENGE, CURSE_CARRYING_CHALLENGE, MARK_OF_NEOOM, PEAR_WHEEL, CHATS_REVENGE, MAX_HP_LOSS, THREE_CURSES, WRATH_OF_IRONCLAD, WRATH_OF_SILENT, WRATH_OF_DEFECT, WRATH_OF_WATCHER
     }
 
     public static class NeowTheStreamerOptionDef {
@@ -192,8 +192,8 @@ public class NeowTheStreamerReward extends NeowReward {
                         option.challengeDesc = CHALLENGE_TEXT[3];
                         break;
                     case 2:
-                        relicReward = new PotionTrashingChallenge();
-                        option.challengeType = NeowTheStreamerChallengeType.POTION_TRASHING_CHALLENGE;
+                        relicReward = new PotionDumpingChallenge();
+                        option.challengeType = NeowTheStreamerChallengeType.POTION_DUMPING_CHALLENGE;
                         option.challengeDesc = CHALLENGE_TEXT[4];
                         break;
                     case 3:
@@ -207,8 +207,8 @@ public class NeowTheStreamerReward extends NeowReward {
                         option.challengeDesc = CHALLENGE_TEXT[6];
                         break;
                     case 5:
-                        relicReward = new DeckBuildingChallenge();
-                        option.challengeType = NeowTheStreamerChallengeType.DECK_BUILDING_CHALLENGE;
+                        relicReward = new CursedRemovalChallenge();
+                        option.challengeType = NeowTheStreamerChallengeType.CURSED_REMOVAL_CHALLENGE;
                         option.challengeDesc = CHALLENGE_TEXT[7];
                         break;
                     case 6:
@@ -226,6 +226,15 @@ public class NeowTheStreamerReward extends NeowReward {
                         break;
                 }
                 int rewardIndex = NeowEvent.rng.random(0, 7);
+                if (challengeIndex >= 2 && challengeIndex <= 6) {
+                    rewardIndex = NeowEvent.rng.random(0,6);
+                }
+                //blacklisted pairs
+                if (challengeIndex == 2 && rewardIndex >= 3) rewardIndex++;
+                if (challengeIndex == 3 && rewardIndex >= 4) rewardIndex++;
+                if (challengeIndex == 4 && rewardIndex >= 2) rewardIndex++;
+                if (challengeIndex == 5 && rewardIndex >= 6) rewardIndex++;
+                if (challengeIndex == 6 && rewardIndex >= 6) rewardIndex++;
                 switch (rewardIndex) {
                     case 0:
                         option.rewardType = NeowTheStreamerRewardType.RANDOM_COMMON_RELIC;
@@ -336,7 +345,7 @@ public class NeowTheStreamerReward extends NeowReward {
                         option.rewardDesc = REWARD_TEXT[16];
                         break;
                     case 5:
-                        this.hp_bonus = (int)(AbstractDungeon.player.maxHealth * 0.75F);
+                        this.hp_bonus = (int)(AbstractDungeon.player.maxHealth * 0.8F);
                         this.relicReward = new BodyOfCleric();
                         option.challengeType = NeowTheStreamerChallengeType.MAX_HP_LOSS;
                         option.challengeDesc = CHALLENGE_TEXT[13] + (AbstractDungeon.player.maxHealth - this.hp_bonus);
@@ -442,10 +451,10 @@ public class NeowTheStreamerReward extends NeowReward {
             case CULTIST_HEADPIECE:
             case LOW_HP_CHALLENGE:
             case HITLESS_CHALLENGE:
-            case POTION_TRASHING_CHALLENGE:
+            case POTION_DUMPING_CHALLENGE:
             case KEY_SMASHING_CHALLENGE:
             case GOLD_EATING_CHALLENGE:
-            case DECK_BUILDING_CHALLENGE:
+            case CURSED_REMOVAL_CHALLENGE:
             case CURSE_CARRYING_CHALLENGE:
             case EVIL_DICE_CHALLENGE:
             case MARK_OF_NEOOM:

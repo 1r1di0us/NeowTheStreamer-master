@@ -33,12 +33,12 @@
       " NL Failed this Combat!"
     ]
   },
-  "${modID}:PotionTrashingChallenge": {
-    "NAME": "Potion Trashing Challenge",
+  "${modID}:PotionDumpingChallenge": {
+    "NAME": "Potion Dumping Challenge",
     "FLAVOR": "Challenge Accepted!",
     "DESCRIPTIONS": [
-      "For every ",
-      " potions discarded, add a Reward (max 5). NL Ends after beating the Act 1 Boss.",
+      "You cannot gain potions. For every ",
+      " potions this dumps, add a Reward (max 5). NL Ends after beating the Act 1 Boss.",
       " NL Rewards Achieved: "
     ]
   },
@@ -46,7 +46,8 @@
     "NAME": "Key Smashing Challenge",
     "FLAVOR": "Challenge Accepted!",
     "DESCRIPTIONS": [
-      "Whenever you obtain a key, discard it and add a Reward (max 5). You can re-obtain discarded keys. NL Ends after beating the Act 1 Boss.",
+      "Whenever you obtain a key, lose ",
+      " hp, discard it and add a Reward (max 5). You can re-obtain discarded keys. NL Ends after beating the Act 1 Boss.",
       " NL Rewards Achieved: "
     ]
   },
@@ -66,6 +67,14 @@
       "For every ",
       " cards more than your initial ",
       " in your deck, add a Reward (max 5). Removing cards updates rewards. NL Ends after beating the Act 1 Boss.",
+      " NL Rewards Achieved: "
+    ]
+  },
+  "${modID}:CursedRemovalChallenge": {
+    "NAME": "Cursed Removal Challenge",
+    "FLAVOR": "Challenge Accepted!",
+    "DESCRIPTIONS": [
+      "Whenever you remove a card from your deck, obtain a random NtS curse. Whenever you obtain a curse, add a Reward (max 5). Ends after defeating the Act 1 Boss.",
       " NL Rewards Achieved: "
     ]
   },

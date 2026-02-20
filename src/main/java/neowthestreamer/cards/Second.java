@@ -13,7 +13,7 @@ public class Second extends BaseCard {
 
     public Second() {
         super(ID, new CardStats(AbstractCard.CardColor.CURSE, AbstractCard.CardType.CURSE, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE,-2));
-        this.exhaust = true;
+        this.isEthereal = true;
         this.cardsToPreview = new Third();
     }
 

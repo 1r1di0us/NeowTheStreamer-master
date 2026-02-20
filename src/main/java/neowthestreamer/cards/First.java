@@ -13,8 +13,8 @@ public class First extends BaseCard {
 
     public First() {
         super(ID, new CardStats(AbstractCard.CardColor.CURSE, AbstractCard.CardType.CURSE, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE,-2));
-        this.exhaust = true;
         this.isInnate = true;
+        //this.exhaust = true;
         this.cardsToPreview = new Second();
     }
 

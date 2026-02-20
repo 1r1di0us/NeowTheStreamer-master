@@ -15,7 +15,6 @@ public class YoutubesRevenge extends BaseCard {
         super(ID, new CardStats(CardColor.CURSE, CardType.CURSE, CardRarity.SPECIAL, CardTarget.NONE,-2));
         SoulboundField.soulbound.set(this, true);
         this.magicNumber = this.baseMagicNumber = 3;
-        this.isEthereal = true;
         this.isInnate = true;
     }
 

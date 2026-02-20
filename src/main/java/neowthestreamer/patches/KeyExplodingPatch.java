@@ -15,7 +15,7 @@ import java.util.ArrayList;
         clz = ObtainKeyEffect.class,
         method = "update"
 )
-public class KeySmashingPatch {
+public class KeyExplodingPatch {
     @SpireInsertPatch(
             locator = Locator.class,
             localvars = {}

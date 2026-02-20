@@ -9,7 +9,7 @@ import neowthestreamer.relics.GoldEatingChallenge;
         clz = AbstractPlayer.class,
         method = "gainGold"
 )
-public class GoldEaterPatch {
+public class GoldEatingPatch {
     public static SpireReturn<Void> Prefix(AbstractPlayer __instance, int amount) {
         if (__instance.hasRelic(GoldEatingChallenge.ID) && !__instance.getRelic(GoldEatingChallenge.ID).usedUp) {
             ((GoldEatingChallenge) __instance.getRelic(GoldEatingChallenge.ID)).onEatGold(amount);
