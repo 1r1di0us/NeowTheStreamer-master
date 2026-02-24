@@ -25,7 +25,7 @@
   },
   "${modID}:First": {
     "NAME": "First!",
-    "DESCRIPTION": "Innate. NL Unplayable. NL At the end of your turn, put a *Second! on top of your draw pile."
+    "DESCRIPTION": "Innate. Ethereal. NL Unplayable. NL At the end of your turn, put a *Second! on top of your draw pile."
   },
   "${modID}:Gottem": {
     "NAME": "Gottem",
