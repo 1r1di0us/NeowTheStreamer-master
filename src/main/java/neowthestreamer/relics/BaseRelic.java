@@ -199,7 +199,7 @@ public abstract class BaseRelic extends CustomRelic {
                                     AbstractDungeon.gridSelectScreen.selectedCards.get(i).untip();
                                     AbstractDungeon.gridSelectScreen.selectedCards.get(i).unhover();
                                     AbstractDungeon.player.masterDeck.removeCard(AbstractDungeon.gridSelectScreen.selectedCards.get(i));
-                                    AbstractDungeon.transformCard(AbstractDungeon.gridSelectScreen.selectedCards.get(i), true, AbstractDungeon.miscRng);
+                                    AbstractDungeon.transformCard(AbstractDungeon.gridSelectScreen.selectedCards.get(i), false, AbstractDungeon.miscRng);
                                     if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.TRANSFORM && AbstractDungeon.transformedCard != null) {
                                         AbstractDungeon.topLevelEffectsQueue.add(new ShowCardAndObtainEffect(
                                                 AbstractDungeon.getTransformedCard(), Settings.WIDTH / 2.0F + (((1 - amount) + (2 * i)) * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F, false));
@@ -218,6 +218,9 @@ public abstract class BaseRelic extends CustomRelic {
                             case DUPLICATE_CARD:
                                 for (int i = 0; i < amount; i++) {
                                     AbstractCard c = (AbstractDungeon.gridSelectScreen.selectedCards.get(i)).makeStatEquivalentCopy();
+                                    c.inBottleFlame = false;
+                                    c.inBottleLightning = false;
+                                    c.inBottleTornado = false;
                                     AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(c, Settings.WIDTH / 2.0F + (((1 - amount) + (2 * i)) * 160.0F) * Settings.scale, Settings.HEIGHT / 2.0F));
                                 }
                                 (AbstractDungeon.getCurrRoom()).rewardPopOutTimer = 0.25F;

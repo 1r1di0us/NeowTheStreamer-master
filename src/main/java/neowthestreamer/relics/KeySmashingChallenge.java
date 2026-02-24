@@ -13,7 +13,7 @@ import static neowthestreamer.NeowTheStreamer.makeID;
 public class KeySmashingChallenge extends BaseRelic implements ActTwoChallengeInterface, SetRewardInterface, CustomSavable<Integer> {
     public static String ID = makeID("KeySmashingChallenge");
 
-    public final int damage = 10;
+    public final int damage = 8;
 
     public KeySmashingChallenge() {
         this(NeowTheStreamerReward.NeowTheStreamerRewardType.NONE);
